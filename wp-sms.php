@@ -458,19 +458,35 @@ License: GPL2
 			
 			if(isset($_POST['wps_import'])) {
 				if(!$_FILES['wps-import-file']['error']) {
+					$data = array();
+
+					if ($_FILES['wps-import-file']['type'] === 'text/csv') {
+						$f = fopen($_FILES["wps-import-file"]["tmp_name"], "r");
+						while (($row = fgetcsv($f, $escape='"')) !== false) {
+							$data[] = $row;
+						}
+						fclose($f);
+					}
+					else {
+						$sheet = new Spreadsheet_Excel_Reader(
+								$_FILES["wps-import-file"]["tmp_name"]);
+						$data = $sheet->sheets[0]['cells'];
+					}
+
 				
-					$data = new Spreadsheet_Excel_Reader($_FILES["wps-import-file"]["tmp_name"]);
 					
-					foreach($data->sheets[0]['cells'] as $items) {
+					$total_submit = 0;
+					$duplicate = 0;
+					foreach($data as $items) {
 						
 						// Check and count duplicate items
 						if(in_array($items[2], $get_mobile)) {
-							$duplicate[] = $items[2];
+							$duplicate += 1;
 							continue;
 						}
 						
 						// Count submited items.
-						$total_submit[] = $data->sheets[0]['cells'];
+						$total_submit += 1;
 						
 						$result = $wpdb->insert("{$table_prefix}sms_subscribes",
 							array(
@@ -485,10 +501,10 @@ License: GPL2
 					}
 					
 					if($result)
-						echo "<div class='updated'><p>" . sprintf(__('<strong>%s</strong> items was successfully added.', 'wp-sms'), count($total_submit)) . "</div></p>";
+						echo "<div class='updated'><p>" . sprintf(__('<strong>%s</strong> items was successfully added.', 'wp-sms'), $total_submit) . "</div></p>";
 					
 					if($duplicate)
-						echo "<div class='error'><p>" . sprintf(__('<strong>%s</strong> Mobile numbers Was repeated.', 'wp-sms'), count($duplicate)) . "</div></p>";
+						echo "<div class='error'><p>" . sprintf(__('<strong>%s</strong> Mobile numbers Was repeated.', 'wp-sms'), $duplicate) . "</div></p>";
 						
 				} else {
 					echo "<div class='error'><p>" . __('Please complete all fields', 'wp-sms') . "</div></p>";
