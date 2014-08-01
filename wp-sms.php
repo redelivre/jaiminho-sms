@@ -31,10 +31,10 @@ License: GPL2
 
 			add_menu_page(__('Wordpress SMS', 'wp-sms'), __('Wordpress SMS', 'wp-sms'), 'manage_options', __FILE__, 'wp_sendsms_page');
 			add_submenu_page(__FILE__, __('Send SMS', 'wp-sms'), __('Send SMS', 'wp-sms'), 'manage_options', __FILE__, 'wp_sendsms_page');
-			add_submenu_page(__FILE__, __('Posted SMS', 'wp-sms'), __('Posted', 'wp-sms'), 'manage_options', 'wp-sms/posted', 'wp_posted_sms_page');
-			add_submenu_page(__FILE__, __('Members Newsletter', 'wp-sms'), __('Newsletter subscribers', 'wp-sms'), 'manage_options', 'wp-sms/subscribe', 'wp_subscribes_page');
-			add_submenu_page(__FILE__, __('Setting', 'wp-sms'), __('Setting', 'wp-sms'), 'manage_options', 'wp-sms/setting', 'wp_sms_setting_page');
-			add_submenu_page(__FILE__, __('About', 'wp-sms'), __('About', 'wp-sms'), 'manage_options', 'wp-sms/about', 'wp_sms_about_page');
+			add_submenu_page(__FILE__, __('Posted SMS', 'wp-sms'), __('Posted', 'wp-sms'), 'manage_options', 'jaiminho-sms/posted', 'wp_posted_sms_page');
+			add_submenu_page(__FILE__, __('Members Newsletter', 'wp-sms'), __('Newsletter subscribers', 'wp-sms'), 'manage_options', 'jaiminho-sms/subscribe', 'wp_subscribes_page');
+			add_submenu_page(__FILE__, __('Setting', 'wp-sms'), __('Setting', 'wp-sms'), 'manage_options', 'jaiminho-sms/setting', 'wp_sms_setting_page');
+			add_submenu_page(__FILE__, __('About', 'wp-sms'), __('About', 'wp-sms'), 'manage_options', 'jaiminho-sms/about', 'wp_sms_about_page');
 		}
 
 	}
@@ -105,7 +105,7 @@ License: GPL2
 				$wp_admin_bar->add_menu(array(
 					'id'		=>	'wp-credit-sms',
 					'title'		=>	 sprintf(__('Your Credit: %s %s', 'wp-sms'), number_format($get_last_credit), $sms->unit),
-					'href'		=>	get_bloginfo('url').'/wp-admin/admin.php?page=wp-sms/setting'
+					'href'		=>	get_bloginfo('url').'/wp-admin/admin.php?page=jaiminho-sms/setting'
 				));
 			}
 			
@@ -113,7 +113,7 @@ License: GPL2
 				'id'		=>	'wp-send-sms',
 				'parent'	=>	'new-content',
 				'title'		=>	__('SMS', 'wp-sms'),
-				'href'		=>	get_bloginfo('url').'/wp-admin/admin.php?page=wp-sms/wp-sms.php'
+				'href'		=>	get_bloginfo('url').'/wp-admin/admin.php?page=jaiminho-sms/wp-sms.php'
 			));
 		} else {
 			return false;
@@ -123,14 +123,14 @@ License: GPL2
 
 	function wp_sms_rightnow_discussion() {
 		global $sms;
-		echo "<tr><td class='b'><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=wp-sms/wp-sms.php'>".number_format(get_option('wp_last_credit'))."</a></td><td><a href='".get_bloginfo('url')."/admin.php?page=wp-sms/wp-sms.php'>".__('Credit', 'wp-sms')." (".$sms->unit.")</a></td></tr>";
+		echo "<tr><td class='b'><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=jaiminho-sms/wp-sms.php'>".number_format(get_option('wp_last_credit'))."</a></td><td><a href='".get_bloginfo('url')."/admin.php?page=jaiminho-sms/wp-sms.php'>".__('Credit', 'wp-sms')." (".$sms->unit.")</a></td></tr>";
 	}
 	add_action('right_now_discussion_table_end', 'wp_sms_rightnow_discussion');
 
 	function wp_sms_rightnow_content() {
 		global $wpdb, $table_prefix;
 		$usernames = $wpdb->get_var("SELECT COUNT(*) FROM {$table_prefix}sms_subscribes");
-		echo "<tr><td class='b'><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=wp-sms/subscribe'>".$usernames."</a></td><td><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=wp-sms/subscribe'>".__('Newsletter Subscriber', 'wp-sms')."</a></td></tr>";
+		echo "<tr><td class='b'><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=jaiminho-sms/subscribe'>".$usernames."</a></td><td><a href='".get_bloginfo('url')."/wp-admin/admin.php?page=jaiminho-sms/subscribe'>".__('Newsletter Subscriber', 'wp-sms')."</a></td></tr>";
 	}
 	add_action('right_now_content_table_end', 'wp_sms_rightnow_content');
 	
@@ -141,14 +141,14 @@ License: GPL2
 		$admin_url = get_bloginfo('url')."/wp-admin";
 		$subscribe = $wpdb->get_var("SELECT COUNT(*) FROM {$table_prefix}sms_subscribes");
 		
-		echo "<li class='wpsms-subscribe-count'><a href='{$admin_url}/admin.php?page=wp-sms/subscribe'>".sprintf(__('%s Subscriber', 'wp-sms'), $subscribe)."</a></li>";
-		echo "<li class='wpsms-credit-count'><a href='{$admin_url}/admin.php?page=wp-sms/setting&tab=web-service'>".sprintf(__('%s SMS Credit', 'wp-sms'), number_format(get_option('wp_last_credit')))."</a></li>";
+		echo "<li class='wpsms-subscribe-count'><a href='{$admin_url}/admin.php?page=jaiminho-sms/subscribe'>".sprintf(__('%s Subscriber', 'wp-sms'), $subscribe)."</a></li>";
+		echo "<li class='wpsms-credit-count'><a href='{$admin_url}/admin.php?page=jaiminho-sms/setting&tab=web-service'>".sprintf(__('%s SMS Credit', 'wp-sms'), number_format(get_option('wp_last_credit')))."</a></li>";
 	}
 	add_action('dashboard_glance_items', 'wp_sms_glance');
 	
 	function wp_sms_enable() {
 	
-		$get_bloginfo_url = get_admin_url() . "admin.php?page=wp-sms/setting&tab=web-service";
+		$get_bloginfo_url = get_admin_url() . "admin.php?page=jaiminho-sms/setting&tab=web-service";
 		echo '<div class="error"><p>'.sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url).'</p></div>';
 	}
 
@@ -533,7 +533,7 @@ License: GPL2
 		
 		wp_enqueue_style('css', plugin_dir_url(__FILE__) . 'assets/css/style.css', true, '1.0');
 		
-		$sms_page['about'] = get_bloginfo('url') . "/wp-admin/admin.php?page=wp-sms/about";
+		$sms_page['about'] = get_bloginfo('url') . "/wp-admin/admin.php?page=jaiminho-sms/about";
 		
 		switch($_GET['tab']) {
 			case 'web-service':

@@ -38,14 +38,14 @@ jQuery(document).ready( function($) {
 	<?php if(!$_GET['action'] == 'edit') { ?>
 	<h2>
 		<?php _e('Members Newsletter', 'wp-sms'); ?>
-		<a class="add-new-h2" href="?page=wp-sms/subscribe&action=import"><?php _e('Import', 'wp-sms'); ?></a>
-		<a class="add-new-h2" href="?page=wp-sms/subscribe&action=export"><?php _e('Export', 'wp-sms'); ?></a>
+		<a class="add-new-h2" href="?page=jaiminho-sms/subscribe&action=import"><?php _e('Import', 'wp-sms'); ?></a>
+		<a class="add-new-h2" href="?page=jaiminho-sms/subscribe&action=export"><?php _e('Export', 'wp-sms'); ?></a>
 		<?php if($_POST['s']) { ?><span class="subtitle"><?php echo sprintf(__('Search result for %s', 'wp-sms'), $_POST['s']); ?></span><?php } ?>
 	</h2>
 	
 	
 	<ul class="subsubsub">
-		<li class="all"><a <?php if($_GET['group'] == false) { echo 'class="current" '; } ?>href="admin.php?page=wp-sms/subscribe"><?php _e('All', 'wp-sms'); ?> <span class="count">(<?php echo $total; ?>)</span></a> |</li>
+		<li class="all"><a <?php if($_GET['group'] == false) { echo 'class="current" '; } ?>href="admin.php?page=jaiminho-sms/subscribe"><?php _e('All', 'wp-sms'); ?> <span class="count">(<?php echo $total; ?>)</span></a> |</li>
 		<?php
 			foreach($get_group_result as $groups) {
 				
@@ -64,7 +64,7 @@ jQuery(document).ready( function($) {
 				
 				$count = count($result);
 				
-				echo "<li><a {$current} href='admin.php?page=wp-sms/subscribe&group={$groups->ID}'>{$groups->name} <span class='count'>({$count})</span></a>{$line}</li>";
+				echo "<li><a {$current} href='admin.php?page=jaiminho-sms/subscribe&group={$groups->ID}'>{$groups->name} <span class='count'>({$count})</span></a>{$line}</li>";
 			}
 		?>
 	</ul>
@@ -120,11 +120,11 @@ jQuery(document).ready( function($) {
 						<?php
 							$result = $wpdb->get_row("SELECT * FROM {$table_prefix}sms_subscribes_group WHERE `ID` = '{$gets->group_ID}'");
 							
-							echo "<a href='admin.php?page=wp-sms/subscribe&group={$result->ID}'>{$result->name}</a>";
+							echo "<a href='admin.php?page=jaiminho-sms/subscribe&group={$result->ID}'>{$result->name}</a>";
 						?>
 					</td>
 					<td class="column-name"><img src="<?php echo WP_SMS_DIR_PLUGIN . '/assets/images/' . $gets->status; ?>.png" align="middle"/></td>
-					<td class="column-name"><a href="?page=wp-sms/subscribe&action=edit&ID=<?php echo $gets->ID; ?>"><?php _e('Edit', 'wp-sms'); ?></a></td>
+					<td class="column-name"><a href="?page=jaiminho-sms/subscribe&action=edit&ID=<?php echo $gets->ID; ?>"><?php _e('Edit', 'wp-sms'); ?></a></td>
 				</tr>
 				<?php
 					}
@@ -283,7 +283,7 @@ jQuery(document).ready( function($) {
 		</table>
 	</form>
 
-	<h4><a href="<?php echo admin_url(); ?>admin.php?page=wp-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
+	<h4><a href="<?php echo admin_url(); ?>admin.php?page=jaiminho-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
 	
 	<?php } ?>
 </div>

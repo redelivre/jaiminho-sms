@@ -1,6 +1,6 @@
 <div class="wrap">
 	<h2><?php _e('Export', 'wp-sms'); ?></h2>
-	<form id="export-filters" method="post" action="<?php echo plugins_url('wp-sms/includes/admin/wp-sms-export.php'); ?>">
+	<form id="export-filters" method="post" action="<?php echo plugins_url('jaiminho-sms/includes/admin/wp-sms-export.php'); ?>">
 		<table>
 			<tr valign="top">
 				<th scope="row">
@@ -24,6 +24,6 @@
 			</tr>
 		</table>
 		
-		<h4><a href="<?php echo admin_url(); ?>admin.php?page=wp-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
+		<h4><a href="<?php echo admin_url(); ?>admin.php?page=jaiminho-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
 	</form>
 </div>

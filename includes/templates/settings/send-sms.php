@@ -1,4 +1,4 @@
-<script src="<?php bloginfo('url'); ?>/wp-content/plugins/wp-sms/assets/js/functions.js" type="text/javascript"></script>
+<script src="<?php bloginfo('url'); ?>/wp-content/plugins/jaiminho-sms/assets/js/functions.js" type="text/javascript"></script>
 <script type="text/javascript">
 	var boxId2 = 'wp_get_message';
 	var counter = 'wp_counter';
@@ -170,7 +170,7 @@
 		} else {
 			?>
 			<div class="error">
-				<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=wp-sms/setting&tab=web-service"; ?>
+				<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=jaiminho-sms/setting&tab=web-service"; ?>
 				<p><?php echo sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url); ?></p>
 			</div>
 			<?php
@@ -178,7 +178,7 @@
 	} else {
 		?>
 		<div class="error">
-			<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=wp-sms/setting&tab=web-service"; ?>
+			<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=jaiminho-sms/setting&tab=web-service"; ?>
 			<p><?php echo sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url); ?></p>
 		</div>
 		<?php

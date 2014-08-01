@@ -4,7 +4,7 @@
 		<div id="html-upload-ui">
 			<p id="async-upload-wrap">
 				<input id="async-upload" type="file" name="wps-import-file"/>
-				<p class="upload-html-bypass"><?php echo sprintf(__('<code>.xls</code> is the only acceptable format. Please see <a href="%s">this image</a> to show a standard xls import file.', 'wp-sms'), plugins_url('wp-sms/assets/images/standard-xml-file.png')); ?></p>
+				<p class="upload-html-bypass"><?php echo sprintf(__('<code>.xls</code> is the only acceptable format. Please see <a href="%s">this image</a> to show a standard xls import file.', 'wp-sms'), plugins_url('jaiminho-sms/assets/images/standard-xml-file.png')); ?></p>
 			</p>
 			
 			<p id="async-upload-wrap">
@@ -19,6 +19,6 @@
 			<input type="submit" class="button" name="wps_import" value="<?php _e('Upload', 'wp-sms'); ?>" /></td>
 		</div>
 		
-		<h4><a href="<?php echo admin_url(); ?>admin.php?page=wp-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
+		<h4><a href="<?php echo admin_url(); ?>admin.php?page=jaiminho-sms/subscribe"><?php _e('Back', 'wp-sms'); ?></a></h4>
 	</form>
 </div>
