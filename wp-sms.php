@@ -463,7 +463,8 @@ License: GPL2
 					if ($_FILES['wps-import-file']['type'] === 'text/csv') {
 						$f = fopen($_FILES["wps-import-file"]["tmp_name"], "r");
 						while (($row = fgetcsv($f, $escape='"')) !== false) {
-							$data[] = $row;
+							// Excel Reader returns data 1-indexed
+							$data[] = array(0, $row[0], $row[1]);
 						}
 						fclose($f);
 					}
