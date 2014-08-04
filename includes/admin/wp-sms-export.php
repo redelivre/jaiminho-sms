@@ -14,7 +14,8 @@
 		
 		$file_name = date('Y-m-d_H-i');
 		
-		$result = $wpdb->get_results("SELECT `ID`,`date`,`name`,`mobile`,`status`,`group_ID` FROM {$table_prefix}sms_subscribes");
+		$result = $wpdb->get_results("SELECT `name`,`mobile` FROM "
+				. "{$table_prefix}sms_subscribes", 'ARRAY_A');
 		
 		switch($type) {
 			case 'excel':
@@ -35,9 +36,6 @@
 		}
 
 		$exporter->initialize();
-		
-		foreach( $result[0] as $key => $col ) { $columns[] = $key; }
-		$exporter->addRow($columns);
 		
 		foreach($result as $row) {
 			$exporter->addRow($row);
