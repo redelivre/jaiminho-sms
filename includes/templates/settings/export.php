@@ -10,9 +10,8 @@
 				<td>
 					<select id="export-file-type" name="export-file-type">
 						<option value="0"><?php _e('Please select.', 'wp-sms'); ?></option>
-						<option value="excel">Excel</option>
-						<option value="xml">XML</option>
 						<option value="csv">CSV</option>
+						<option value="xml">XML</option>
 						<option value="tsv">TSV</option>
 					</select>
 					<p class="description"><?php _e('Select the output file type.', 'wp-sms'); ?></p>

@@ -18,10 +18,6 @@
 				. "{$table_prefix}sms_subscribes", 'ARRAY_A');
 		
 		switch($type) {
-			case 'excel':
-				$exporter = new ExportDataExcel('browser', "{$file_name}.xls");
-			break;
-			
 			case 'xml':
 				$exporter = new ExportDataExcel('browser', "{$file_name}.xml");
 			break;
