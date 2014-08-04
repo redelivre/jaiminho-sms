@@ -27,7 +27,7 @@
 			break;
 			
 			case 'csv':
-				$exporter = new ExportDataCSV('browser', "{$file_name}.csv");
+				$exporter = new ExportDataCSV2('browser', "{$file_name}.csv");
 			break;
 			
 			case 'tsv':

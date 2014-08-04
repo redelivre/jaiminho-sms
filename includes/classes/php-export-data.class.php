@@ -135,6 +135,26 @@ class ExportDataCSV extends ExportData {
 	}
 }
 
+/**
+ * ExportDataCSV1 - Exports to CSV (comma separated value) format. According to
+ * Libreofffice's default options.
+ */
+class ExportDataCSV2 extends ExportData {
+	
+	function generateRow($row) {
+		foreach ($row as $key => $value) {
+			// We are using "" to escape double
+			$row[$key] = '"'. str_replace('"', '""', $value) .'"';
+		}
+		return implode(",", $row) . "\n";
+	}
+	
+	function sendHttpHeaders() {
+		header("Content-type: text/csv");
+		header("Content-Disposition: attachment; filename=".basename($this->filename));
+	}
+}
+
 
 /**
  * ExportDataExcel exports data into an XML format  (spreadsheetML) that can be 
