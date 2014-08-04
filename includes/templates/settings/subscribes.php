@@ -171,7 +171,6 @@ jQuery(document).ready( function($) {
 	</div>
 	<?php } ?>
 	
-	<?php if($get_group_result) : ?>
 	<form action="" method="post">
 		<table>
 			<tr><td colspan="2"><h3><?php _e('Add new subscribe:', 'wp-sms'); ?></h4></td></tr>
@@ -201,7 +200,6 @@ jQuery(document).ready( function($) {
 			</tr>
 		</table>
 	</form>
-	<?php endif; ?>
 	
 	<form action="" method="post">
 		<table>

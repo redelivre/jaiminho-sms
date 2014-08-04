@@ -331,10 +331,14 @@ License: GPL2
 		$group	= trim($_POST['wpsms_group_name']);
 		
 		if(isset($_POST['wp_add_subscribe'])) {
+
+			if(!isset($group)) {
+				$group = null;
+			}
 		
-			if($name && $mobile && $group) {
+			if($name && $mobile) {
 			
-				if( (strlen($mobile) >= 11) && (substr($mobile, 0, 2) == get_option('wp_sms_mcc')) && (preg_match("([a-zA-Z])", $mobile) == 0) ) {
+				if(is_numeric($mobile)) {
 				
 					$check_mobile = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `mobile` = '%s'", $mobile));
 					
