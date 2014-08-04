@@ -443,11 +443,10 @@ License: GPL2
 			} else {
 				echo "<div class='error'><p>" . __('Please complete all fields', 'wp-sms') . "</div></p>";
 			}
-			
-		}
 		
-		if(!$get_group_result) {
-			add_action('admin_print_footer_scripts', 'wpsms_group_pointer');
+			if(!$get_group_result) {
+				add_action('admin_print_footer_scripts', 'wpsms_group_pointer');
+			}
 		}
 		
 		if($_GET['action'] == 'import') {
