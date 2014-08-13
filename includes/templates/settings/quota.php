@@ -7,36 +7,33 @@
 		<a href="?page=jaiminho-sms/setting&tab=notification" class="nav-tab<?php if($_GET['tab'] == 'notification') { echo " nav-tab-active"; } ?>"><?php _e('Notification', 'wp-sms'); ?></a>
 		<a href="?page=jaiminho-sms/setting&tab=quota" class="nav-tab<?php if($_GET['tab'] == 'quota') { echo " nav-tab-active"; } ?>"><?php _e('Quota', 'wp-sms'); ?></a>
 	</h2>
-	
+
 	<table class="form-table">
 		<form method="post" action="options.php" name="form">
 			<?php wp_nonce_field('update-options');?>
 			<tr>
-				<th><?php _e('Suggested post by SMS?', 'wp-sms'); ?></th>
+				<th><?php _e('Current blog quota', 'wp-sms'); ?></th>
 				<td>
-					<input type="checkbox" name="wp_suggestion_status" id="wp_suggestion_status" <?php echo get_option('wp_suggestion_status') ==true? 'checked="checked"':'';?>/>
-					<label for="wp_suggestion_status"><?php _e('Active', 'wp-sms'); ?></label>
+					<span><?php printf('%s SMS', get_option('wpsms_quota')); ?></span>
 				</td>
 			</tr>
-			
+
 			<tr>
-				<th><?php _e('Add Mobile number field?', 'wp-sms'); ?></th>
+				<th><?php _e('Add to quota', 'wp-sms'); ?></th>
 				<td>
-					<input type="checkbox" name="wps_add_mobile_field" id="wps_add_mobile_field" <?php echo get_option('wps_add_mobile_field') ==true? 'checked="checked"':'';?>/>
-					<label for="wps_add_mobile_field"><?php _e('Active', 'wp-sms'); ?></label>
-					<p class="description"><?php _e('Add Mobile number to user profile and register form.', 'wp-sms'); ?></p>
+					<input type="text" dir="ltr" style="width: 200px;" name="wpsms_quota" value="0"/>
 				</td>
 			</tr>
-			
+
 			<tr>
 				<td>
 					<p class="submit">
 						<input type="hidden" name="action" value="update" />
-						<input type="hidden" name="page_options" value="wp_suggestion_status,wps_add_mobile_field" />
+						<input type="hidden" name="page_options" value="wpsms_quota" />
 						<input type="submit" class="button-primary" name="Submit" value="<?php _e('Update', 'wp-sms'); ?>" />
 					</p>
 				</td>
 			</tr>
-		</form>	
+		</form>
 	</table>
 </div>

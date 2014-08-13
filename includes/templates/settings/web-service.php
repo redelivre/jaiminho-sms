@@ -12,6 +12,7 @@
 		<a href="?page=jaiminho-sms/setting&tab=newsletter" class="nav-tab<?php if($_GET['tab'] == 'newsletter') { echo " nav-tab-active"; } ?>"><?php _e('Newsletter', 'wp-sms'); ?></a>
 		<a href="?page=jaiminho-sms/setting&tab=features" class="nav-tab<?php if($_GET['tab'] == 'features') { echo " nav-tab-active"; } ?>"><?php _e('Features', 'wp-sms'); ?></a>
 		<a href="?page=jaiminho-sms/setting&tab=notification" class="nav-tab<?php if($_GET['tab'] == 'notification') { echo " nav-tab-active"; } ?>"><?php _e('Notification', 'wp-sms'); ?></a>
+		<a href="?page=jaiminho-sms/setting&tab=quota" class="nav-tab<?php if($_GET['tab'] == 'quota') { echo " nav-tab-active"; } ?>"><?php _e('Quota', 'wp-sms'); ?></a>
 	</h2>
 	
 	<form method="post" action="options.php" name="form">

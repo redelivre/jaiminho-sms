@@ -61,7 +61,8 @@ License: GPL2
 					'wpsms_ul_stats',
 					'wps_add_wpcf7',
 					'wpsms_wc_no_stats',
-					'wpsms_edd_no_stats');
+					'wpsms_edd_no_stats',
+					'wpsms_quota');
 
 			foreach ($super_admin_options as $option) {
 				add_filter('pre_update_option_' . $option,
@@ -69,6 +70,13 @@ License: GPL2
 							return get_option($option);
 				});
 			}
+		}
+		else {
+			// wpsms_quota works a little different, it's added, not defined
+			add_filter('pre_update_option_wpsms_quota',
+					function ($value) {
+						return max(0, get_option('wpsms_quota') + (int) $value);
+			});
 		}
 	}
 	add_action('init', 'wp_sms_filter_options');
@@ -106,6 +114,9 @@ License: GPL2
 	
 	if( !get_option('wp_sms_mcc') )
 		update_option('wp_sms_mcc', '09');
+
+	if(!is_numeric(get_option('wpsms_quota')))
+		update_option('wpsms_quota', 0);
 	
 	function wp_subscribes() {
 	
@@ -596,6 +607,11 @@ License: GPL2
 				include_once dirname( __FILE__ ) . "/includes/templates/settings/notification.php";
 				break;
 			
+			case 'quota':
+				include_once dirname( __FILE__ )
+					. "/includes/templates/settings/quota.php";
+				break;
+
 			default:
 				include_once dirname( __FILE__ ) . "/includes/templates/settings/setting.php";
 				break;
