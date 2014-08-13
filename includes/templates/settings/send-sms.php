@@ -79,12 +79,17 @@
 									$sms->isflash = false;
 								}
 
-								if($sms->SendSMS()) {
+								$credits = get_option('wpsms_quota');
+								if (sizeof($sms->to) > $credits) {
+									echo "<div class='error'><p>" . sprintf(__('You have %d credits, but you are trying to send %d messages.', 'wp-sms'), $credits, sizeof($sms->to)) . "</p></div>";
+								}
+								else if($sms->SendSMS()) {
 								
 									$to = implode($wpdb->get_col("SELECT mobile FROM {$table_prefix}sms_subscribes"), ",");
 									
 									echo "<div class='updated'><p>" . __('SMS was sent with success', 'wp-sms') . "</p></div>";
 									update_option('wp_last_credit', $sms->GetCredit());
+									update_option('wpsms_quota', -sizeof($sms->to));
 								}
 							} else {
 								echo "<div class='error'><p>" . __('Please enter a message', 'wp-sms') . "</p></div>";
