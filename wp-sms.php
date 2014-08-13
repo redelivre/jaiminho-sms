@@ -131,7 +131,7 @@ License: GPL2
 		global $wp_admin_bar;
 		$get_last_credit = get_option('wp_last_credit');
 		
-		if(is_super_admin() || is_admin_bar_showing()) {
+		if(is_super_admin()) {
 		
 			if($get_last_credit) {
 				global $sms;
