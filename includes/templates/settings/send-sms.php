@@ -171,7 +171,7 @@
 			?>
 			<div class="error">
 				<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=jaiminho-sms/setting&tab=web-service"; ?>
-				<p><?php echo sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url); ?></p>
+				<p><?php echo sprintf(__('Please ask your admin to configure SMS', 'wp-sms'), $get_bloginfo_url); ?></p>
 			</div>
 			<?php
 		}
@@ -179,7 +179,7 @@
 		?>
 		<div class="error">
 			<?php $get_bloginfo_url = get_admin_url() . "admin.php?page=jaiminho-sms/setting&tab=web-service"; ?>
-			<p><?php echo sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url); ?></p>
+			<p><?php echo sprintf(__('Please ask your admin to configure SMS', 'wp-sms'), $get_bloginfo_url); ?></p>
 		</div>
 		<?php
 	} ?>
