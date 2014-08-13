@@ -33,12 +33,45 @@ License: GPL2
 			add_submenu_page(__FILE__, __('Send SMS', 'wp-sms'), __('Send SMS', 'wp-sms'), 'manage_options', __FILE__, 'wp_sendsms_page');
 			add_submenu_page(__FILE__, __('Posted SMS', 'wp-sms'), __('Posted', 'wp-sms'), 'manage_options', 'jaiminho-sms/posted', 'wp_posted_sms_page');
 			add_submenu_page(__FILE__, __('Members Newsletter', 'wp-sms'), __('Newsletter subscribers', 'wp-sms'), 'manage_options', 'jaiminho-sms/subscribe', 'wp_subscribes_page');
-			add_submenu_page(__FILE__, __('Setting', 'wp-sms'), __('Setting', 'wp-sms'), 'manage_options', 'jaiminho-sms/setting', 'wp_sms_setting_page');
+			if (is_super_admin()) {
+				add_submenu_page(__FILE__, __('Setting', 'wp-sms'), __('Setting', 'wp-sms'), 'manage_options', 'jaiminho-sms/setting', 'wp_sms_setting_page');
+			}
 			add_submenu_page(__FILE__, __('About', 'wp-sms'), __('About', 'wp-sms'), 'manage_options', 'jaiminho-sms/about', 'wp_sms_about_page');
 		}
 
 	}
 	add_action('admin_menu', 'wp_sms_page');
+
+	function wp_sms_filter_options() {
+		// Prevent malicious users from changing super_admin settings
+		if (!is_super_admin()) {
+			$super_admin_options = array('wp_admin_mobile',
+					'wp_sms_mcc',
+					'wp_webservice',
+					'wp_subscribes_status',
+					'wp_subscribes_activation',
+					'wp_subscribes_send_sms',
+					'wp_call_jquery',
+					'wp_suggestion_status',
+					'wp_add_mobile_field',
+					'wp_subscribes_send',
+					'wp_notification_new_wp_version',
+					'wpsms_nrnu_stats',
+					'wpsms_gnc_stats',
+					'wpsms_ul_stats',
+					'wps_add_wpcf7',
+					'wpsms_wc_no_stats',
+					'wpsms_edd_no_stats');
+
+			foreach ($super_admin_options as $option) {
+				add_filter('pre_update_option_' . $option,
+						function ($new) use ($option) {
+							return get_option($option);
+				});
+			}
+		}
+	}
+	add_action('init', 'wp_sms_filter_options');
 	
 	function wp_sms_icon() {
 	
