@@ -185,8 +185,11 @@ License: GPL2
 		echo '<div class="error"><p>'.sprintf(__('Please check the <a href="%s">SMS credit</a> the settings', 'wp-sms'), $get_bloginfo_url).'</p></div>';
 	}
 
+	// Don't bother the users, they can't change the settings
+	/*
 	if(!get_option('wp_username') || !get_option('wp_password'))
 		add_action('admin_notices', 'wp_sms_enable');
+	*/
 	
 	function wp_sms_widget() {
 	
