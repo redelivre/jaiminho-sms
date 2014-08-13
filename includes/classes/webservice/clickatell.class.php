@@ -30,20 +30,21 @@ class clickatell extends WP_SMS {
 			$result = curl_exec($ch);
 
 			if ($result) {
-				if (strstr($result, 'ERR')) {
-					echo $result;
-				}
-				else {
+				$sent = sizeof($this->to) - substr_count($result, 'ERR');
+
+				if ($sent) {
 					echo "SMS message sent. $result";
 
 					$this->InsertToDB($this->from, $this->msg, $this->to);
 					$this->Hook('wp_sms_send', $result);
-
-					return true;
 				}
+
+				return $sent;
 			} else {
 				echo "API access error";
 			}
+
+			return 0;
 		}
 
 		public function GetCredit() {
