@@ -80,15 +80,16 @@
 								}
 
 								$credits = get_option('wpsms_quota');
-								if (sizeof($sms->to) > $credits) {
-									echo "<div class='error'><p>" . sprintf(__('You have %d credits, but you are trying to send %d messages.', 'wp-sms'), $credits, sizeof($sms->to)) . "</p></div>";
+								$cost = (int) ((strlen($sms->msg) + 159) / 160);
+								if (sizeof($sms->to) * $cost > $credits) {
+									echo "<div class='error'><p>" . sprintf(__('You have %d credits, but you are trying to send %d messages.', 'wp-sms'), $credits, sizeof($sms->to) * $cost) . "</p></div>";
 								}
 								else {
 									$sent = $sms->SendSMS();
 
-									echo "<div class='updated'><p>" . sprintf(__('%d SMS were sent with success. %d failed.', 'wp-sms'), $sent, sizeof($sms->to) - $sent) . "</p></div>";
+									echo "<div class='updated'><p>" . sprintf(__('%d messages were sent with success. %d failed.', 'wp-sms'), $sent, sizeof($sms->to) - $sent) . "</p></div>";
 									update_option('wp_last_credit', $sms->GetCredit());
-									update_option('wpsms_quota', -$sent);
+									update_option('wpsms_quota', -$sent * $cost);
 								}
 							} else {
 								echo "<div class='error'><p>" . __('Please enter a message', 'wp-sms') . "</p></div>";
