@@ -14,7 +14,7 @@
 			<tr>
 				<th><?php _e('Current blog quota', 'wp-sms'); ?></th>
 				<td>
-					<span><?php printf('%s SMS', get_option('wpsms_quota')); ?></span>
+					<span><?php printf(__('%s SMS', 'wp-sms'), get_option('wpsms_quota')); ?></span>
 				</td>
 			</tr>
 
