@@ -1,0 +1,1014 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Jaiminho SMS\n"
+"POT-Creation-Date: 2014-08-14 10:57-0300\n"
+"PO-Revision-Date: 2014-08-14 14:49-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.5\n"
+"X-Poedit-Basepath: /home/cobra/sshfs/jaiminho-sms\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/admin/wp-sms-export.php:5
+msgid "Access denied!"
+msgstr "Acesso negado!"
+
+#: includes/admin/wp-sms-export.php:43
+msgid "Please select the desired items."
+msgstr "Por favor selecione os itens desejados."
+
+#: includes/admin/wp-sms-features.php:21
+#, php-format
+msgid "Hi %s, the %s post suggested to you by %s. url: %s"
+msgstr "Olá %s, o post %s foi sugerido a você por %s. url: %s"
+
+#: includes/admin/wp-sms-features.php:24
+msgid "SMS was sent with success"
+msgstr "Mensagem enviada com sucesso"
+
+#: includes/admin/wp-sms-features.php:27
+#: includes/admin/wp-sms-subscribe.php:81 wp-sms.php:413 wp-sms.php:492
+msgid "Please enter a valid mobile number"
+msgstr "Por favor entre com um número válido de celular"
+
+#: includes/admin/wp-sms-features.php:30
+#: includes/admin/wp-sms-subscribe-activation.php:24
+#: includes/admin/wp-sms-subscribe.php:84 wp-sms.php:416 wp-sms.php:495
+#: wp-sms.php:561
+msgid "Please complete all fields"
+msgstr "Por favor complete todos os campos"
+
+#: includes/admin/wp-sms-features.php:44
+#: includes/templates/settings/subscribes.php:87
+#: includes/templates/settings/subscribes.php:143
+#: includes/templates/settings/subscribes.php:183
+#: includes/templates/settings/subscribes.php:253
+#: includes/templates/wp-sms-subscribe-form.php:84
+msgid "Mobile"
+msgstr "Celular"
+
+#: includes/admin/wp-sms-features.php:53
+#: includes/templates/settings/setting.php:15
+msgid "Your Mobile Number"
+msgstr "Seu número de celular"
+
+#: includes/admin/wp-sms-features.php:61
+msgid "<strong>ERROR</strong>: You must include a mobile number."
+msgstr "<strong>ERROR</strong>: Você deve incluir um número de celular."
+
+#: includes/admin/wp-sms-newslleter.php:5
+msgid "Subscribe SMS"
+msgstr "SMS para Assinantes"
+
+#: includes/admin/wp-sms-notifications.php:21
+#, php-format
+msgid "WordPress %s is available! Please update now"
+msgstr "Wordpress %s disponível! Por favor atualize agora"
+
+#: includes/admin/wp-sms-subscribe-activation.php:21
+msgid "Security Code is wrong"
+msgstr "O código de segurança está errado"
+
+#: includes/admin/wp-sms-subscribe.php:38
+msgid "Your activation code"
+msgstr "Seu código de ativação"
+
+#: includes/admin/wp-sms-subscribe.php:73 wp-sms.php:465
+msgid "Nothing found!"
+msgstr "Nada encontrado!"
+
+#: includes/admin/wp-sms-subscribe.php:78 wp-sms.php:410
+msgid "Phone number is repeated"
+msgstr "O número de telefone é repetido"
+
+#: includes/templates/settings/about.php:2
+msgid "About Plugin"
+msgstr "Sobre o Plugin"
+
+#: includes/templates/settings/about.php:3
+#, php-format
+msgid "Version plugin: %s"
+msgstr "Versão do plugin: %s"
+
+#: includes/templates/settings/about.php:4
+msgid ""
+"The first free WordPress Iranian plugin that works on Web service messages."
+msgstr ""
+"O primeiro plugin Iraniano grátis de Wordpress que funciona com serviços web "
+"de mensagem."
+
+#: includes/templates/settings/about.php:5
+#, php-format
+msgid "This plugin created by %s from %s gorup"
+msgstr "Este pplugin foi criado por %s do %s gorup"
+
+#: includes/templates/settings/about.php:6
+msgid "do you have problem with plugin?"
+msgstr "você tem problemas com o plugin?"
+
+#: includes/templates/settings/about.php:7
+#, php-format
+msgid "if you have you can tell your problem in <a href=\"%s\">forum</a>."
+msgstr ""
+"se você tem, você pode enviar seu problema no <a href=\"%s\">forum</a>."
+
+#: includes/templates/settings/about.php:9
+msgid "are you a translator?"
+msgstr "você é um tradutor?"
+
+#: includes/templates/settings/about.php:10
+#, php-format
+msgid "please send your translation to %s."
+msgstr "por favor envie sua tradução para %s."
+
+#: includes/templates/settings/about.php:12
+msgid "you want to know about how to add your web service to this plugin?"
+msgstr "você quer saber como adicionar seu serviço web a este plugin?"
+
+#: includes/templates/settings/about.php:13
+#, php-format
+msgid "to adding your web service please contact with %s."
+msgstr "para adicione seu serviço web, por favor entre em contato com %s."
+
+#: includes/templates/settings/about.php:15
+msgid "Donate in plugin."
+msgstr "Doar no plugin."
+
+#: includes/templates/settings/about.php:26
+msgid "Donate"
+msgstr "Doar"
+
+#: includes/templates/settings/export.php:2
+#: includes/templates/settings/export.php:22
+#: includes/templates/settings/subscribes.php:42
+msgid "Export"
+msgstr "Exportar"
+
+#: includes/templates/settings/export.php:7
+msgid "Export To"
+msgstr "Exportar Para"
+
+#: includes/templates/settings/export.php:12
+msgid "Please select."
+msgstr "Por favor selecione."
+
+#: includes/templates/settings/export.php:17
+msgid "Select the output file type."
+msgstr "Selecione o tipo do arquivo de saída."
+
+#: includes/templates/settings/export.php:26
+#: includes/templates/settings/import.php:22
+#: includes/templates/settings/subscribes.php:284
+msgid "Back"
+msgstr "Voltar"
+
+#: includes/templates/settings/features.php:3
+#: includes/templates/settings/newsletter.php:11
+#: includes/templates/settings/notification.php:31
+#: includes/templates/settings/quota.php:3
+#: includes/templates/settings/setting.php:3
+#: includes/templates/settings/web-service.php:10
+msgid "General"
+msgstr "Geral"
+
+#: includes/templates/settings/features.php:4
+#: includes/templates/settings/newsletter.php:12
+#: includes/templates/settings/notification.php:32
+#: includes/templates/settings/quota.php:4
+#: includes/templates/settings/setting.php:4
+#: includes/templates/settings/web-service.php:11
+#: includes/templates/settings/web-service.php:22
+msgid "Web Service"
+msgstr "Serviço Web"
+
+#: includes/templates/settings/features.php:5
+#: includes/templates/settings/newsletter.php:13
+#: includes/templates/settings/notification.php:33
+#: includes/templates/settings/quota.php:5
+#: includes/templates/settings/setting.php:5
+#: includes/templates/settings/web-service.php:12
+msgid "Newsletter"
+msgstr "Boletim Informativo"
+
+#: includes/templates/settings/features.php:6
+#: includes/templates/settings/newsletter.php:14
+#: includes/templates/settings/notification.php:34
+#: includes/templates/settings/quota.php:6
+#: includes/templates/settings/setting.php:6
+#: includes/templates/settings/web-service.php:13
+msgid "Features"
+msgstr "Recursos"
+
+#: includes/templates/settings/features.php:7
+#: includes/templates/settings/newsletter.php:15
+#: includes/templates/settings/notification.php:35
+#: includes/templates/settings/quota.php:7
+#: includes/templates/settings/setting.php:7
+#: includes/templates/settings/web-service.php:14
+msgid "Notification"
+msgstr "Notificações"
+
+#: includes/templates/settings/features.php:8
+#: includes/templates/settings/newsletter.php:16
+#: includes/templates/settings/notification.php:36
+#: includes/templates/settings/quota.php:8
+#: includes/templates/settings/setting.php:8
+#: includes/templates/settings/web-service.php:15
+msgid "Quota"
+msgstr "Cota"
+
+#: includes/templates/settings/features.php:15
+msgid "Suggested post by SMS?"
+msgstr "Sugerir post por SMS?"
+
+#: includes/templates/settings/features.php:18
+#: includes/templates/settings/features.php:26
+#: includes/templates/settings/newsletter.php:26
+#: includes/templates/settings/newsletter.php:34
+#: includes/templates/settings/newsletter.php:42
+#: includes/templates/settings/newsletter.php:68
+#: includes/templates/settings/notification.php:50
+#: includes/templates/settings/notification.php:77
+#: includes/templates/settings/notification.php:86
+#: includes/templates/settings/notification.php:124
+#: includes/templates/settings/notification.php:154
+#: includes/templates/settings/notification.php:184
+#: includes/templates/settings/notification.php:197
+#: includes/templates/settings/notification.php:226
+#: includes/templates/settings/subscribes.php:156
+#: includes/templates/settings/subscribes.php:272
+#: includes/templates/settings/web-service.php:85
+msgid "Active"
+msgstr "Ativar"
+
+#: includes/templates/settings/features.php:23
+msgid "Add Mobile number field?"
+msgstr "Adicionar campo para número do telefone?"
+
+#: includes/templates/settings/features.php:27
+msgid "Add Mobile number to user profile and register form."
+msgstr ""
+"Adicionar campo para número de telefone no perfil do usuário e no formulário "
+"de cadastro."
+
+#: includes/templates/settings/features.php:36
+#: includes/templates/settings/newsletter.php:78
+#: includes/templates/settings/notification.php:248
+#: includes/templates/settings/quota.php:33
+#: includes/templates/settings/setting.php:34
+#: includes/templates/settings/web-service.php:98
+msgid "Update"
+msgstr "Atualizar"
+
+#: includes/templates/settings/import.php:2
+#: includes/templates/settings/subscribes.php:41
+msgid "Import"
+msgstr "Importar"
+
+#: includes/templates/settings/import.php:7
+#, php-format
+msgid ""
+"<code>.xls</code> and <code>.csv</code> are the only acceptable formats. "
+"Please see <a href=\"%s\">this image</a> to show a standard xls import file."
+msgstr ""
+"<code>.xls</code> e <code>.csv</code> são os únicos formatos aceitos. Por "
+"favor veja <a href=\"%s\">esta imagem</a> para saber como o arquivo xls deve "
+"ser."
+
+#: includes/templates/settings/import.php:11
+#: includes/templates/settings/subscribes.php:23
+#: includes/templates/settings/subscribes.php:88
+#: includes/templates/settings/subscribes.php:144
+#: includes/templates/settings/subscribes.php:188
+#: includes/templates/wp-sms-subscribe-form.php:89
+msgid "Group"
+msgstr "Grupo"
+
+#: includes/templates/settings/import.php:19
+msgid "Upload"
+msgstr "Enviar"
+
+#: includes/templates/settings/meta-box.php:2
+msgid "Send this post to subscribers?"
+msgstr "Enviar este post aos assinantes?"
+
+#: includes/templates/settings/meta-box.php:4
+#: includes/templates/settings/send-sms.php:155
+msgid "Yes"
+msgstr "Sim"
+
+#: includes/templates/settings/meta-box.php:5
+#: includes/templates/settings/send-sms.php:158
+msgid "No"
+msgstr "Não"
+
+#: includes/templates/settings/newsletter.php:23
+msgid "Register?"
+msgstr "Cadastrar?"
+
+#: includes/templates/settings/newsletter.php:31
+msgid "Verified with the activation code?"
+msgstr "Verificado com o código de ativação?"
+
+#: includes/templates/settings/newsletter.php:39
+msgid "Send SMS?"
+msgstr "Enviar SMS?"
+
+#: includes/templates/settings/newsletter.php:43
+msgid "Send a sms to subscriber when register."
+msgstr "Enviar SMS ao assinante quando cadastrado."
+
+#: includes/templates/settings/newsletter.php:50
+#: includes/templates/settings/notification.php:58
+#: includes/templates/settings/notification.php:94
+#: includes/templates/settings/notification.php:132
+#: includes/templates/settings/notification.php:162
+#: includes/templates/settings/notification.php:205
+#: includes/templates/settings/notification.php:234
+msgid "Text template"
+msgstr "Modelo de texto"
+
+#: includes/templates/settings/newsletter.php:55
+#: includes/templates/settings/notification.php:63
+#: includes/templates/settings/notification.php:100
+#: includes/templates/settings/notification.php:110
+#: includes/templates/settings/notification.php:137
+#: includes/templates/settings/notification.php:167
+#: includes/templates/settings/notification.php:210
+#: includes/templates/settings/notification.php:239
+msgid "Enter the contents of the sms message."
+msgstr "Entre o conteúdo da mensagem sms."
+
+#: includes/templates/settings/newsletter.php:57
+#: includes/templates/settings/notification.php:65
+#: includes/templates/settings/notification.php:102
+#: includes/templates/settings/notification.php:112
+#: includes/templates/settings/notification.php:139
+#: includes/templates/settings/notification.php:169
+#: includes/templates/settings/notification.php:212
+msgid "Input data:"
+msgstr "Dados de entrada:"
+
+#: includes/templates/settings/newsletter.php:58
+msgid "Subscribe name"
+msgstr "Nome do assinante"
+
+#: includes/templates/settings/newsletter.php:59
+msgid "Subscribe mobile"
+msgstr "Celular do assinante"
+
+#: includes/templates/settings/newsletter.php:65
+msgid "Calling jQuery in Wordpress?"
+msgstr "Chamando jQuery no Wordpress?"
+
+#: includes/templates/settings/newsletter.php:69
+msgid "Enable this option with JQuery is called in the theme"
+msgstr "Abilite esta opção se o jQuery é chamado pelo tema"
+
+#: includes/templates/settings/notification.php:43
+msgid "Wordpress Notifications"
+msgstr "Notificações Wordpress"
+
+#: includes/templates/settings/notification.php:47
+msgid "Published new posts"
+msgstr "Novos posts publicados"
+
+#: includes/templates/settings/notification.php:51
+msgid "Send a sms to subscribers When published new posts."
+msgstr "Envia sms aos assinantes when um novo post é publicado."
+
+#: includes/templates/settings/notification.php:66
+msgid "Title post"
+msgstr "Título do post"
+
+#: includes/templates/settings/notification.php:67
+msgid "URL post"
+msgstr "URL do post"
+
+#: includes/templates/settings/notification.php:68
+msgid "Date post"
+msgstr "Data do post"
+
+#: includes/templates/settings/notification.php:74
+msgid "The new release of WordPress"
+msgstr "Nova versão do Wordpress"
+
+#: includes/templates/settings/notification.php:78
+msgid "Send a sms to you When the new release of WordPress."
+msgstr "Enviar sms para você quando uma nova versão do Wordpress é lançada."
+
+#: includes/templates/settings/notification.php:83
+msgid "Register a new user"
+msgstr "Cadastrar novo usuário"
+
+#: includes/templates/settings/notification.php:87
+msgid "Send a sms to you and user when register on wordpress."
+msgstr ""
+"Enviar um sms para você quando um novo usuário é cadastrado no Wordpress."
+
+#: includes/templates/settings/notification.php:98
+msgid "For users:"
+msgstr "Para os usuários:"
+
+#: includes/templates/settings/notification.php:103
+#: includes/templates/settings/notification.php:113
+#: includes/templates/settings/web-service.php:43
+msgid "Username"
+msgstr "Nome de usuário"
+
+#: includes/templates/settings/notification.php:104
+#: includes/templates/settings/notification.php:114
+msgid "User email"
+msgstr "Email do usuário"
+
+#: includes/templates/settings/notification.php:105
+#: includes/templates/settings/notification.php:115
+msgid "Date register"
+msgstr "Data de cadastramento"
+
+#: includes/templates/settings/notification.php:108
+msgid "For admin:"
+msgstr "Para o admin:"
+
+#: includes/templates/settings/notification.php:121
+msgid "New comment"
+msgstr "Novo comentário"
+
+#: includes/templates/settings/notification.php:125
+msgid "Send a sms to you When get a new comment."
+msgstr "Enviar sms para você quando um novo comentário é feito."
+
+#: includes/templates/settings/notification.php:140
+msgid "Comment author"
+msgstr "Autor do comentário"
+
+#: includes/templates/settings/notification.php:141
+msgid "Comment author email"
+msgstr "Email do autor do comentário"
+
+#: includes/templates/settings/notification.php:142
+msgid "Comment author url"
+msgstr "URL do autor do comentário"
+
+#: includes/templates/settings/notification.php:143
+msgid "Comment author IP"
+msgstr "IP do autor do comentário"
+
+#: includes/templates/settings/notification.php:144
+msgid "Comment date"
+msgstr "Data do comentário"
+
+#: includes/templates/settings/notification.php:145
+msgid "Comment content"
+msgstr "Conteúdo do comentário"
+
+#: includes/templates/settings/notification.php:151
+#: includes/templates/settings/notification.php:170
+msgid "User login"
+msgstr "Login de usuário"
+
+#: includes/templates/settings/notification.php:155
+msgid "Send a sms to you When user is login."
+msgstr "Enviar sms quando um usuário faz login."
+
+#: includes/templates/settings/notification.php:171
+msgid "Display name"
+msgstr "Nome mostrado"
+
+#: includes/templates/settings/notification.php:177
+msgid "Contact form 7 plugin"
+msgstr "Plugin Contact Form 7"
+
+#: includes/templates/settings/notification.php:181
+msgid "SMS meta box"
+msgstr "Meta box de SMS"
+
+#: includes/templates/settings/notification.php:185
+msgid ""
+"Added Wordpress SMS meta box to Contact form 7 plugin when enable this "
+"option."
+msgstr "Adiciona uma Meta Box do Wordpress SMS ao plugin Contact Form 7"
+
+#: includes/templates/settings/notification.php:190
+msgid "WooCommerce plugin"
+msgstr "Plugin WooCommerce"
+
+#: includes/templates/settings/notification.php:194
+#: includes/templates/settings/notification.php:223
+msgid "New order"
+msgstr "Novo pedido"
+
+#: includes/templates/settings/notification.php:198
+#: includes/templates/settings/notification.php:227
+msgid "Send a sms to you When get new order."
+msgstr "Enviar sms para você quando um novo pedido é realizado"
+
+#: includes/templates/settings/notification.php:213
+msgid "Order ID"
+msgstr "ID do Pedido"
+
+#: includes/templates/settings/notification.php:219
+msgid "Easy Digital Downloads plugin"
+msgstr "Plugin Easy Digital Downloads"
+
+#: includes/templates/settings/posted.php:8
+#: includes/templates/settings/subscribes.php:8
+msgid "Are you sure?"
+msgstr "Você tem razão?"
+
+#: includes/templates/settings/posted.php:20 wp-sms.php:34
+msgid "Posted SMS"
+msgstr "Mensagens Enviadas"
+
+#: includes/templates/settings/posted.php:20
+#: includes/templates/settings/send-sms.php:140
+#: includes/templates/settings/send-sms.php:144
+#: includes/templates/wp-sms-wpcf7-form.php:4 wp-sms.php:111 wp-sms.php:159
+msgid "SMS"
+msgstr "SMS"
+
+#: includes/templates/settings/posted.php:26
+#: includes/templates/settings/posted.php:77
+msgid "Post Date"
+msgstr "Data de Envio"
+
+#: includes/templates/settings/posted.php:27
+#: includes/templates/settings/posted.php:78
+msgid "Sender"
+msgstr "Remetente"
+
+#: includes/templates/settings/posted.php:28
+#: includes/templates/settings/posted.php:79
+msgid "Message"
+msgstr "Mensagem"
+
+#: includes/templates/settings/posted.php:29
+#: includes/templates/settings/posted.php:80
+msgid "Recipient"
+msgstr "Recipiente"
+
+#: includes/templates/settings/posted.php:69
+#: includes/templates/settings/subscribes.php:133
+msgid "Not Found!"
+msgstr "Não encontrado!"
+
+#: includes/templates/settings/posted.php:88
+#: includes/templates/settings/subscribes.php:154
+msgid "Bulk Actions"
+msgstr "Ações em Massa"
+
+#: includes/templates/settings/posted.php:89
+#: includes/templates/settings/subscribes.php:155
+#: includes/templates/settings/subscribes.php:234
+msgid "Remove"
+msgstr "Remover"
+
+#: includes/templates/settings/posted.php:91
+#: includes/templates/settings/subscribes.php:159
+msgid "Apply"
+msgstr "Aplicar"
+
+#: includes/templates/settings/posted.php:101
+#: includes/templates/settings/subscribes.php:169
+msgid "Page"
+msgstr "Página"
+
+#: includes/templates/settings/posted.php:101
+#: includes/templates/settings/subscribes.php:169
+msgid "From"
+msgstr "De"
+
+#: includes/templates/settings/quota.php:15
+msgid "Current blog quota"
+msgstr "Cota do blog atual"
+
+#: includes/templates/settings/quota.php:17
+#, php-format
+msgid "%s SMS"
+msgstr "%s mensagens"
+
+#: includes/templates/settings/quota.php:22
+msgid "Add to quota"
+msgstr "Adicionar à cota"
+
+#: includes/templates/settings/send-sms.php:44
+#: includes/templates/settings/send-sms.php:103
+#: includes/templates/settings/send-sms.php:168 wp-sms.php:33
+msgid "Send SMS"
+msgstr "Enviar SMS"
+
+#: includes/templates/settings/send-sms.php:85
+#, php-format
+msgid "You have %d credits, but you are trying to send %d messages."
+msgstr "Você tem %d creditos, porém está tentando enviar %d mensagens."
+
+#: includes/templates/settings/send-sms.php:90
+#, php-format
+msgid "%d messages were sent with success. %d failed."
+msgstr "%d mensagens foram enviadas com sucesso. %d falharam."
+
+#: includes/templates/settings/send-sms.php:95
+msgid "Please enter a message"
+msgstr "Por favor digite a mensagem"
+
+#: includes/templates/settings/send-sms.php:106
+msgid "Send from"
+msgstr "Enviar de"
+
+#: includes/templates/settings/send-sms.php:110
+#: includes/templates/wp-sms-wpcf7-form.php:10
+msgid "Send to"
+msgstr "Enviar para"
+
+#: includes/templates/settings/send-sms.php:115
+msgid "Subscribe users"
+msgstr "Assinantes"
+
+#: includes/templates/settings/send-sms.php:117
+msgid "Number(s)"
+msgstr "Número(s)"
+
+#: includes/templates/settings/send-sms.php:124
+#, php-format
+msgid "All (%s subscribers active)"
+msgstr "Todos (%s assinantes ativos)"
+
+#: includes/templates/settings/send-sms.php:134
+msgid "For example"
+msgstr "Por exemplo"
+
+#: includes/templates/settings/send-sms.php:143
+msgid "The remaining words"
+msgstr "Caracteres restantes"
+
+#: includes/templates/settings/send-sms.php:146
+msgid "Your credit"
+msgstr "Seus créditos"
+
+#: includes/templates/settings/send-sms.php:152
+msgid "Send a Flash"
+msgstr "Enviar um Flash"
+
+#: includes/templates/settings/send-sms.php:161
+msgid "Flash is possible to send messages without being asked, opens"
+msgstr "Com Flash é possível enviar mensagem sem ser perguntado, abre"
+
+#: includes/templates/settings/send-sms.php:179
+#: includes/templates/settings/send-sms.php:187
+msgid "Please ask your admin to configure SMS"
+msgstr ""
+"Por favor peça a seu administrador para realizar as configurações de SMS"
+
+#: includes/templates/settings/setting.php:22
+msgid "Your mobile country code"
+msgstr "Seu código do país"
+
+#: includes/templates/settings/setting.php:25
+msgid "Enter your mobile country code. (For example: Iran 09, Australia 61)"
+msgstr "Entre o seu código do país. (Por exemplo: Iran 09, Australia 61)"
+
+#: includes/templates/settings/subscribes.php:23
+msgid "Outset Create group to better manage the subscribers."
+msgstr "Criar grupo para melhor gerenciar os assinantes."
+
+#: includes/templates/settings/subscribes.php:40 wp-sms.php:35
+msgid "Members Newsletter"
+msgstr "Boletim de Notificação dos Membros"
+
+#: includes/templates/settings/subscribes.php:43
+#, php-format
+msgid "Search result for %s"
+msgstr "Resultados da busca por %s"
+
+#: includes/templates/settings/subscribes.php:48
+msgid "All"
+msgstr "Todos"
+
+#: includes/templates/settings/subscribes.php:74
+#: includes/templates/settings/subscribes.php:76
+msgid "Search subscribers"
+msgstr "Buscar Assinantes"
+
+#: includes/templates/settings/subscribes.php:85
+#: includes/templates/settings/subscribes.php:141
+msgid "Register date"
+msgstr "Data de Cadastramento"
+
+#: includes/templates/settings/subscribes.php:86
+#: includes/templates/settings/subscribes.php:142
+#: includes/templates/settings/subscribes.php:178
+#: includes/templates/settings/subscribes.php:248
+#: includes/templates/wp-sms-subscribe-form.php:79
+#: includes/templates/wp-sms-widget.php:2
+msgid "Name"
+msgstr "Nome"
+
+#: includes/templates/settings/subscribes.php:89
+#: includes/templates/settings/subscribes.php:145
+#: includes/templates/settings/subscribes.php:269
+#: includes/templates/settings/web-service.php:82
+msgid "Status"
+msgstr "Status"
+
+#: includes/templates/settings/subscribes.php:90
+#: includes/templates/settings/subscribes.php:127
+#: includes/templates/settings/subscribes.php:146
+#: includes/templates/settings/subscribes.php:279
+msgid "Edit"
+msgstr "Editar"
+
+#: includes/templates/settings/subscribes.php:157
+#: includes/templates/settings/subscribes.php:273
+#: includes/templates/settings/web-service.php:87
+msgid "Deactive"
+msgstr "Desativar"
+
+#: includes/templates/settings/subscribes.php:176
+msgid "Add new subscribe:"
+msgstr "Adicionar novo assinante:"
+
+#: includes/templates/settings/subscribes.php:199
+#: includes/templates/settings/subscribes.php:213
+msgid "Add"
+msgstr "Adicionar"
+
+#: includes/templates/settings/subscribes.php:206
+msgid "Add new Group:"
+msgstr "Adicionar Novo Grupo:"
+
+#: includes/templates/settings/subscribes.php:208
+#: includes/templates/settings/subscribes.php:223
+#: includes/templates/settings/subscribes.php:258
+msgid "Group name"
+msgstr "Nome do Grupo"
+
+#: includes/templates/settings/subscribes.php:221
+msgid "Delete Group:"
+msgstr "Remover Grupo:"
+
+#: includes/templates/settings/subscribes.php:246
+msgid "Edit subscribe:"
+msgstr "Editar Assinante:"
+
+#: includes/templates/settings/web-service.php:25
+msgid "Select your Web Service"
+msgstr "Selecione o Seu Serviço Web"
+
+#: includes/templates/settings/web-service.php:29
+#, php-format
+msgid "Web Service (%s)"
+msgstr "Serviço Web (%s)"
+
+#: includes/templates/settings/web-service.php:35
+#, php-format
+msgid ""
+"If you do not have a web service, <a href=\"%s\" target=\"_blank\">click "
+"here.</a>"
+msgstr ""
+"Se você não tem um serviço web, <a href=\"%s\" target=\"_blank\">clique aqui."
+"</a>"
+
+#: includes/templates/settings/web-service.php:36
+#, php-format
+msgid ""
+"If your Web service is not on the top list, <a href=\"%s\" target=\"_blank"
+"\">click here.</a>"
+msgstr ""
+"Se o seu serviço web não está na lista acima, <a href=\"%s\" target=\"_blank"
+"\">clique aqui.</a>"
+
+#: includes/templates/settings/web-service.php:46
+msgid "Your username in"
+msgstr "Seu nome de usuário em"
+
+#: includes/templates/settings/web-service.php:49
+#, php-format
+msgid ""
+"If you do not have a username for this service <a href=\"%s\">click here..</"
+"a>"
+msgstr ""
+"Se você não tem um nome de usuário para este serviço, <a href=\"%s\">clique "
+"aqui.</a>"
+
+#: includes/templates/settings/web-service.php:55
+msgid "Password"
+msgstr "Senha"
+
+#: includes/templates/settings/web-service.php:58
+msgid "Your password in"
+msgstr "Sua senha em"
+
+#: includes/templates/settings/web-service.php:61
+#, php-format
+msgid ""
+"If you do not have a password for this service <a href=\"%s\">click here..</"
+"a>"
+msgstr ""
+"Se você não tem uma senha para este serviço, <a href=\"%s\">clique aqui.</a>"
+
+#: includes/templates/settings/web-service.php:67
+msgid "Number"
+msgstr "Número"
+
+#: includes/templates/settings/web-service.php:70
+msgid "Your SMS sender number in"
+msgstr "O seu número de envio de SMS em"
+
+#: includes/templates/settings/web-service.php:75 wp-sms.php:170
+msgid "Credit"
+msgstr "Créditos"
+
+#: includes/templates/wp-sms-subscribe-form.php:26
+msgid "You will join the newsletter!"
+msgstr "Você fará parte do boletim de notificações"
+
+#: includes/templates/wp-sms-subscribe-form.php:31
+msgid "Your subscription was canceled."
+msgstr "Sua assinatura foi cancelada."
+
+#: includes/templates/wp-sms-subscribe-form.php:37
+msgid "You will join the newsletter, Activation code sent to your number."
+msgstr ""
+"Você fará parte do boletim de notificações. O código de ativação enviado foi "
+"enviado ao seu número."
+
+#: includes/templates/wp-sms-subscribe-form.php:59
+msgid "Your membership in the complete newsletter!"
+msgstr "Sua assinatura ao boletim de informações está completa!"
+
+#: includes/templates/wp-sms-subscribe-form.php:75
+msgid "Enter your information for SMS Subscribe"
+msgstr "Entre com os seus dados para se tornar um assinante"
+
+#: includes/templates/wp-sms-subscribe-form.php:102
+#: includes/templates/wp-sms-subscribe-form.php:111
+msgid "Subscribe"
+msgstr "Assinar"
+
+#: includes/templates/wp-sms-subscribe-form.php:105
+msgid "Unsubscribe"
+msgstr "Desistir"
+
+#: includes/templates/wp-sms-subscribe-form.php:118
+msgid "Please enter the activation code:"
+msgstr "Por favor entre o código de ativação"
+
+#: includes/templates/wp-sms-subscribe-form.php:120
+msgid "Activation"
+msgstr "Ativação"
+
+#: includes/templates/wp-sms-subscribe-form.php:126
+msgid "Subscribe is Deactive!"
+msgstr "Assinaturas estão desativas"
+
+#: includes/templates/wp-sms-tell-friend.php:1
+msgid "Suggested by SMS"
+msgstr "Sugerido por SMS"
+
+#: includes/templates/wp-sms-tell-friend.php:5
+msgid "Your name"
+msgstr "Seu nome"
+
+#: includes/templates/wp-sms-tell-friend.php:6
+msgid "Your friend name"
+msgstr "Nome do seu amigo"
+
+#: includes/templates/wp-sms-tell-friend.php:7
+msgid "Your friend mobile"
+msgstr "Celular do seu amigo"
+
+#: includes/templates/wp-sms-tell-friend.php:15
+msgid "Send"
+msgstr "Enviar"
+
+#: includes/templates/wp-sms-wpcf7-form.php:12
+msgid "Enter enter mobile number to receive message."
+msgstr "Entre o número de celular o qual receberá a mensagem."
+
+#: includes/templates/wp-sms-wpcf7-form.php:18
+msgid "Message body"
+msgstr "Corpo da mensagem"
+
+#: wp-sms.php:22
+msgid ""
+"Send a SMS via WordPress, Subscribe for sms newsletter and send an SMS to "
+"the subscriber newsletter."
+msgstr ""
+"Enviar SMS pelo Wordpress, Assinar o boletim de informações e enviar SMS "
+"para o boletim."
+
+#: wp-sms.php:32
+msgid "Wordpress SMS"
+msgstr "Wordpress SMS"
+
+#: wp-sms.php:34
+msgid "Posted"
+msgstr "Enviado"
+
+#: wp-sms.php:35
+msgid "Newsletter subscribers"
+msgstr "Assinantes do Boletim de Informações"
+
+#: wp-sms.php:37
+msgid "Setting"
+msgstr "Configurações"
+
+#: wp-sms.php:39
+msgid "About"
+msgstr "Sobre"
+
+#: wp-sms.php:109
+msgid "Rial"
+msgstr "Rial"
+
+#: wp-sms.php:151
+#, php-format
+msgid "Your Credit: %s %s"
+msgstr "Seus créditos: %s %s"
+
+#: wp-sms.php:177
+msgid "Newsletter Subscriber"
+msgstr "Assinante do Boletim de Informações"
+
+#: wp-sms.php:188
+#, php-format
+msgid "%s Subscriber"
+msgstr "%s Assinantes"
+
+#: wp-sms.php:189
+#, php-format
+msgid "%s SMS Credit"
+msgstr "%s Créditos SMS"
+
+#: wp-sms.php:196
+#, php-format
+msgid "Please check the <a href=\"%s\">SMS credit</a> the settings"
+msgstr "Por favor acesse <a href=\"%s\">esta página</a> para configurar"
+
+#: wp-sms.php:207 wp-sms.php:208
+msgid "Subscribe to SMS"
+msgstr "Assinar SMS"
+
+#: wp-sms.php:238 wp-sms.php:251 wp-sms.php:291 wp-sms.php:580 wp-sms.php:623
+msgid "You do not have sufficient permissions to access this page."
+msgstr "Você não tem permissões suficiente para acessar esta página."
+
+#: wp-sms.php:275 wp-sms.php:342
+msgid "With success was removed"
+msgstr "Removido com sucesso"
+
+#: wp-sms.php:277 wp-sms.php:344 wp-sms.php:357 wp-sms.php:370
+msgid "Not Found"
+msgstr "Não encontrado"
+
+#: wp-sms.php:355
+msgid "User is active."
+msgstr "Usuário está ativo."
+
+#: wp-sms.php:368
+msgid "User is Deactive.."
+msgstr "Usuário está inativo."
+
+#: wp-sms.php:406
+#, php-format
+msgid "username <strong>%s</strong> was added successfully."
+msgstr "usuário <strong>%s</strong> foi adicionado com sucesso."
+
+#: wp-sms.php:437
+#, php-format
+msgid "Group <strong>%s</strong> was added successfully."
+msgstr "Grupo <strong>%s</strong> foi adicionado com sucesso."
+
+#: wp-sms.php:441
+msgid "Group name is repeated"
+msgstr "Nome do grupo repetido"
+
+#: wp-sms.php:444
+msgid "Please complete field"
+msgstr "Por favor complete o campo"
+
+#: wp-sms.php:460
+#, php-format
+msgid "Group <strong>%s</strong> was successfully removed."
+msgstr "Grupo <strong>%s</strong> foi removido com sucesso."
+
+#: wp-sms.php:488
+#, php-format
+msgid "username <strong>%s</strong> was update successfully."
+msgstr "usuário <strong>%s</strong> foi atualizado com sucesso."
+
+#: wp-sms.php:555
+#, php-format
+msgid "<strong>%s</strong> items was successfully added."
+msgstr "<strong>%s</strong> itens foram adicionado com sucesso."
+
+#: wp-sms.php:558
+#, php-format
+msgid "<strong>%s</strong> Mobile numbers Was repeated."
+msgstr "<strong>%s</strong> números eram repetidos."
