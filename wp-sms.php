@@ -501,69 +501,187 @@ License: GPL2
 		}
 		
 		if($_GET['action'] == 'import') {
-			
 			include_once dirname( __FILE__ ) . "/includes/classes/excel-reader.class.php";
-			
-			$get_mobile = $wpdb->get_col($wpdb->prepare("SELECT `mobile` FROM {$table_prefix}sms_subscribes", false));
-			
-			if(isset($_POST['wps_import'])) {
-				if(!$_FILES['wps-import-file']['error']) {
-					$data = array();
+			$matching = false;
+			$importing = false;
+			$filename = null;
+			$tmpid = null;
 
-					if ($_FILES['wps-import-file']['type'] === 'text/csv') {
-						$f = fopen($_FILES["wps-import-file"]["tmp_name"], "r");
-						while (($row = fgetcsv($f, $escape='"')) !== false) {
-							// Excel Reader returns data 1-indexed
-							$data[] = array(0, $row[0], $row[1]);
+			/* Delete old (>= .5 hour) import files */
+			foreach (glob(sys_get_temp_dir() . '/wp-sms-i-*') as $f) {
+				if (time() - filemtime($f) >= 1800) {
+					unlink($f);
+				}
+			}
+			
+			if (isset($_POST['wps_import2'])) {
+				if (!array_key_exists('wps_tmpid', $_POST)
+						|| !array_key_exists('wps_field', $_POST)
+						|| !is_array($_POST['wps_field'])) {
+					echo "<div class='error'><p>"
+						. __('Invalid file', 'wp-sms') . "</div></p>";
+				}
+				else {
+					$tmpid = $_POST['wps_tmpid'];
+					$filename = sys_get_temp_dir() . '/wp-sms-i-' .  $tmpid;
+					$file = fopen($filename, 'r');
+					if ($file !== false) {
+						$fields = $_POST['wps_field'];
+						$associations = array(0, 0);
+						$count = $associations;
+						foreach ($fields as $k => $v) {
+							if (array_key_exists($v, $count) && is_numeric($k)) {
+								$count[$v]++;
+								$associations[$v] = $k;
+							}
 						}
-						fclose($f);
+
+						if ($count[0] != 1 || $count[1] != 1) {
+							$matching = true;
+
+							echo "<div class='error'><p>"
+								. __('Each field must be matched exactly once', 'wp-sms') . "</div></p>";
+						}
+						else {
+							$importing = true;
+						}
+						fclose($file);
 					}
 					else {
-						$sheet = new Spreadsheet_Excel_Reader(
-								$_FILES["wps-import-file"]["tmp_name"]);
-						$data = $sheet->sheets[0]['cells'];
+					echo "<div class='error'><p>"
+						. __('Importing session expired', 'wp-sms') . "</div></p>";
+					}
+				}
+			}
+
+			if(isset($_POST['wps_import']) && !$_FILES['wps-import-file']['error']) {
+				$tmpid = uniqid($more_entropy=true);
+				$filename = sys_get_temp_dir() . '/wp-sms-i-' . $tmpid;
+				$output = fopen($filename, 'w');
+
+				if ($_FILES['wps-import-file']['type'] === 'application/save') {
+					$sheet = new
+						Spreadsheet_Excel_Reader($_FILES['wps-import-file']['tmp_name']);
+					foreach ($sheet->sheets[0]['cells'] as $row) {
+						fputcsv($output, $row);
 					}
 
-				
-					
-					$total_submit = 0;
+					$matching = true;
+				}
+				else if ($_FILES['wps-import-file']['type'] === 'text/csv') {
+					$f = fopen($_FILES['wps-import-file']['tmp_name'], "r");
+					while (($row = fgetcsv($f, $escape='"')) !== false) {
+						fputcsv($output, $row);
+					}
+					fclose($f);
+
+					$matching = true;
+				}
+				else {
+					echo "<div class='error'><p>"
+						. __('Invalid file type', 'wp-sms') . "</div></p>";
+				}
+
+				fclose($output);
+			}
+
+			if ($matching) {
+				$data = array();
+				$total = 0;
+				$cols = 0;
+
+				$f = fopen($filename, "r");
+				while (($row = fgetcsv($f, $escape='"')) !== false) {
+					$total++;
+					$cols = max($cols, sizeof($row));
+					if (sizeof($data) >= 8) {
+						array_pop($data);
+						if (sizeof($data) == 7) {
+							$data[] = array('...');
+						}
+					}
+					$data[] = $row;
+				}
+				fclose($f);
+
+				include_once dirname( __FILE__ )
+					. "/includes/templates/settings/importpreview.php";
+			}
+			else {
+				if ($importing) {
+					$get_mobile = $wpdb->get_col($wpdb->prepare(
+								"SELECT `mobile` FROM {$table_prefix}sms_subscribes", false));
+					$data = array();
+
+					$f = fopen($filename, "r");
+					while (($row = fgetcsv($f, $escape='"')) !== false) {
+						$data[] = $row;
+					}
+					fclose($f);
+
 					$duplicate = 0;
-					foreach($data as $items) {
-						
+					$invalid = 0;
+					foreach($data as $row) {
+						if (!array_key_exists($associations[0], $row)
+								|| !array_key_exists($associations[1], $row)) {
+							$invalid++;
+							continue;
+						}
+
+						$name = $row[$associations[0]];
+						$mobile = $row[$associations[1]];
+
+						if (!is_numeric($mobile)) {
+							$invalid++;
+							continue;
+						}
+
 						// Check and count duplicate items
-						if(in_array($items[2], $get_mobile)) {
+						if(in_array($mobile, $get_mobile)) {
 							$duplicate += 1;
 							continue;
 						}
-						
-						// Count submited items.
-						$total_submit += 1;
+						$get_mobile[] = $mobile;
 						
 						$result = $wpdb->insert("{$table_prefix}sms_subscribes",
 							array(
-								'date'		=>	date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
-								'name'		=>	$items[1],
-								'mobile'	=>	$items[2],
-								'status'	=>	'1',
-								'group_ID'	=>	$_POST['wpsms_group_name']
+								'date' => date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
+								'name' => $name,
+								'mobile' => $mobile,
+								'status' => '1',
+								'group_ID' => $_POST['wpsms_group_name']
 							)
 						);
 						
 					}
+
+					if($invalid + $duplicate < sizeof($data)) {
+						echo "<div class='updated'><p>"
+							. sprintf(__(
+										'<strong>%s</strong> items were successfully added.',
+										'wp-sms'), sizeof($data) - $duplicate - $invalid)
+							. "</div></p>";
+					}
 					
-					if($result)
-						echo "<div class='updated'><p>" . sprintf(__('<strong>%s</strong> items was successfully added.', 'wp-sms'), $total_submit) . "</div></p>";
-					
-					if($duplicate)
-						echo "<div class='error'><p>" . sprintf(__('<strong>%s</strong> Mobile numbers Was repeated.', 'wp-sms'), $duplicate) . "</div></p>";
-						
-				} else {
-					echo "<div class='error'><p>" . __('Please complete all fields', 'wp-sms') . "</div></p>";
+					if ($duplicate) {
+						echo "<div class='error'><p>" . sprintf(__(
+									'<strong>%s</strong> mobile numbers were duplicates.',
+									'wp-sms'), $duplicate) .
+						"</div></p>";
+					}
+
+					if ($invalid) {
+						echo "<div class='error'><p>" . sprintf(__(
+									'<strong>%s</strong> mobile numbers were invalid.',
+									'wp-sms'), $invalid) .
+						"</div></p>";
+					}
+				}
+
+				if (!$matching) {
+					include_once dirname( __FILE__ ) . "/includes/templates/settings/import.php";
 				}
 			}
-			
-			include_once dirname( __FILE__ ) . "/includes/templates/settings/import.php";
-			
 		} else if($_GET['action'] == 'export') {
 			include_once dirname( __FILE__ ) . "/includes/templates/settings/export.php";
 		} else {
