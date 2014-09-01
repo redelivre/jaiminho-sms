@@ -29,10 +29,25 @@
 			PRIMARY KEY(ID)) CHARSET=utf8
 		");
 
+		$create_sms_fields= ("CREATE TABLE {$table_prefix}sms_fields(
+			ID int(10) NOT NULL auto_increment,
+      name VARCHAR(32) NOT NULL UNIQUE,
+			PRIMARY KEY(ID)) CHARSET=utf8
+		");
+
+		$create_sms_values= ("CREATE TABLE {$table_prefix}sms_values(
+			subscriber int(10) NOT NULL,
+			field int(10) NOT NULL,
+      value text NOT NULL,
+			PRIMARY KEY(subscriber, field)) CHARSET=utf8
+		");
+
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 		dbDelta($create_sms_subscribes);
 		dbDelta($create_sms_subscribes_group);
 		dbDelta($create_sms_send);
+		dbDelta($create_sms_fields);
+		dbDelta($create_sms_values);
 		
 		add_option('wp_sms_db_version', WP_SMS_VERSION);
 	}
