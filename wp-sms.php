@@ -33,6 +33,12 @@ License: GPL2
 			add_submenu_page(__FILE__, __('Send SMS', 'wp-sms'), __('Send SMS', 'wp-sms'), 'manage_options', __FILE__, 'wp_sendsms_page');
 			add_submenu_page(__FILE__, __('Posted SMS', 'wp-sms'), __('Posted', 'wp-sms'), 'manage_options', 'jaiminho-sms/posted', 'wp_posted_sms_page');
 			add_submenu_page(__FILE__, __('Members Newsletter', 'wp-sms'), __('Newsletter subscribers', 'wp-sms'), 'manage_options', 'jaiminho-sms/subscribe', 'wp_subscribes_page');
+			add_submenu_page(__FILE__,
+                            __('Manage Data Fields', 'wp-sms'),
+                            __('Data Fields', 'wp-sms'),
+                            'manage_options',
+                            'jaiminho-sms/data_fields',
+                            'wp_manage_sms_fields');
 			if (is_super_admin()) {
 				add_submenu_page(__FILE__, __('Setting', 'wp-sms'), __('Setting', 'wp-sms'), 'manage_options', 'jaiminho-sms/setting', 'wp_sms_setting_page');
 			}
@@ -747,3 +753,32 @@ License: GPL2
 	include_once dirname( __FILE__ ) . '/includes/admin/wp-sms-newslleter.php';
 	include_once dirname( __FILE__ ) . '/includes/admin/wp-sms-features.php';
 	include_once dirname( __FILE__ ) . '/includes/admin/wp-sms-notifications.php';
+
+	function wp_manage_sms_fields() {
+		global $wpdb;
+
+		if (array_key_exists('wp_sms_new_data_field', $_POST)) {
+			if (empty($_POST['wp_sms_field_name'])) {
+				echo "<div class='error'><p>"
+					. __('Please complete all fields', 'wp-sms') . "</div></p>";
+			}
+			else {
+				$r = $wpdb->insert($wpdb->prefix . 'sms_fields',
+						array('name' => $_POST['wp_sms_field_name']));
+
+				if ($r === false) {
+					echo "<div class='error'><p>"
+						. __('Field already exists', 'wp-sms') . "</div></p>";
+				}
+				else {
+					echo "<div class='updated'><p>"
+						. __('Field successfully added', 'wp-sms') . "</div></p>";
+				}
+			}
+		}
+
+		$query = 'SELECT * FROM ' . $wpdb->prefix . 'sms_fields';
+		$fields = $wpdb->get_results($query, 'ARRAY_A');
+
+		include_once dirname(__FILE__) . '/includes/admin/wp-sms-datafields.php';
+	}
