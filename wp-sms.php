@@ -391,7 +391,7 @@ License: GPL2
 		
 			if($name && $mobile) {
 			
-				if(is_numeric($mobile)) {
+				if (is_numeric($mobile)) {
 				
 					$check_mobile = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `mobile` = '%s'", $mobile));
 					
@@ -476,7 +476,7 @@ License: GPL2
 		if(isset($_POST['wp_edit_subscribe'])) {
 		
 			if($name && $mobile && $group) {
-				if( (strlen($mobile) >= 11) && (substr($mobile, 0, 2) == get_option('wp_sms_mcc')) && (preg_match("([a-zA-Z])", $mobile) == 0) ) {
+				if (is_numeric($mobile)) {
 				
 					$check = $wpdb->update("{$table_prefix}sms_subscribes",
 						array(
