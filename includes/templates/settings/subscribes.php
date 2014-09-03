@@ -238,7 +238,16 @@ jQuery(document).ready( function($) {
 	
 	<?php endif; ?>
 	<?php } else { ?>
-	<?php $get_result = $wpdb->get_results("SELECT * FROM {$table_prefix}sms_subscribes WHERE ID = '".$_GET['ID']."'"); ?>
+	<?php
+		$get_result = $wpdb->get_results(
+				"SELECT * FROM {$table_prefix}sms_subscribes WHERE ID = '"
+				.$_GET['ID']."'");
+	  $extra_fields = $wpdb->get_results($wpdb->prepare(
+					"SELECT field, value FROM {$table_prefix}sms_values "
+					. 'WHERE subscriber = %d', $_GET['ID']), 'OBJECT_K');
+	  $field_names = $wpdb->get_results(
+				"SELECT ID, name FROM {$table_prefix}sms_fields", 'OBJECT_K');
+	?>
 	
 	<div class="clear"></div>
 	<form action="" method="post">
@@ -274,6 +283,25 @@ jQuery(document).ready( function($) {
 					</select>
 				</td>
 			</tr>
+
+			<?php
+				foreach ($field_names as $id => $name) {
+					$name = $name->name;
+					?>
+					<tr>
+						<td>
+							<span class="label_td"
+							for="wpsms_extra_field[<?php echo $id; ?>]"><?php
+								echo $name; ?>:</span>
+						</td>
+						<td><input type="text"
+							name="wp_extra_field[<?php echo $id; ?>]"
+								value="<?php echo isset($extra_fields[$id])?
+								$extra_fields[$id]->value : ''; ?>">
+						</td>
+					</tr>
+				<?php }
+			?>
 
 			<tr>
 				<td colspan="2"><input type="submit" class="button-primary" name="wp_edit_subscribe" value="<?php _e('Edit', 'wp-sms'); ?>" /></td>

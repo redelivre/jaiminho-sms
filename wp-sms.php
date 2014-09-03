@@ -477,7 +477,6 @@ License: GPL2
 		
 			if($name && $mobile && $group) {
 				if (is_numeric($mobile)) {
-				
 					$check = $wpdb->update("{$table_prefix}sms_subscribes",
 						array(
 							'name'		=> $name,
@@ -489,6 +488,20 @@ License: GPL2
 							'ID'		=> $_GET['ID']
 						)
 					);
+					$valid_fields = $wpdb->get_col(
+							"SELECT ID FROM {$table_prefix}sms_fields");
+
+					foreach ($valid_fields as $f) {
+						if (array_key_exists($f, $_POST['wp_extra_field'])) {
+							$wpdb->query($wpdb->prepare(
+										"INSERT INTO {$table_prefix}sms_values "
+										. "(subscriber, field, value) VALUES "
+										. "(%d, %d, %s) "
+										. "ON DUPLICATE KEY UPDATE "
+										. "value=VALUES(value)",
+										$_GET['ID'], $f, $_POST['wp_extra_field'][$f]));
+						}
+					}
 					
 					if($check) {
 						echo "<div class='updated'><p>" . sprintf(__('username <strong>%s</strong> was update successfully.', 'wp-sms'), $name) . "</div></p>";
