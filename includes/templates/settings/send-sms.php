@@ -62,7 +62,7 @@
 									if( $_POST['wpsms_group_name'] == 'all' ) {
 										$sms->to = $wpdb->get_col("SELECT mobile FROM {$table_prefix}sms_subscribes WHERE `status` = '1'");
 									} else {
-										$sms->to = $wpdb->get_col("SELECT mobile FROM {$table_prefix}sms_subscribes WHERE `status` = '1' AND `group_ID` = '".$_POST['wpsms_group_name']."'");
+										$sms->to = $wpdb->get_col($wpdb->prepare("SELECT mobile FROM {$table_prefix}sms_subscribes WHERE `status` = '1' AND `group_ID` = %s", $_POST['wpsms_group_name']));
 									}
 									
 								} else if($_POST['wp_send_to'] == "wp_tellephone") {

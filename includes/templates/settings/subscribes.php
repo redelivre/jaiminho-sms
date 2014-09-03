@@ -60,7 +60,9 @@ jQuery(document).ready( function($) {
 					$line = null;
 				}
 				
-				$result = $wpdb->get_col("SELECT * FROM {$table_prefix}sms_subscribes WHERE `group_ID` = '{$groups->ID}'");
+				$result = $wpdb->get_col($wpdb->prepare(
+							"SELECT * FROM {$table_prefix}sms_subscribes "
+							. "WHERE group_ID = %s", $groups->ID));
 				
 				$count = count($result);
 				
@@ -96,13 +98,13 @@ jQuery(document).ready( function($) {
 			<?php
 				// Retrieve MySQL data
 				if($_GET['group']) {
-					$get_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `group_ID` = '{$_GET['group']}' ORDER BY `{$table_prefix}sms_subscribes`.`ID` DESC  LIMIT {$start}, {$end}");
+					$get_result = $wpdb->get_results($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE group_ID = %s ORDER BY `{$table_prefix}sms_subscribes`.`ID` DESC  LIMIT {$start}, {$end}", $_GET['group']));
 				} else {
 					$get_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}sms_subscribes` ORDER BY `{$table_prefix}sms_subscribes`.`ID` DESC  LIMIT {$start}, {$end}");
 				}
 				
 				if($_POST['search']) {
-					$get_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `name` LIKE '%{$_POST['s']}%' OR `mobile` LIKE '%{$_POST['s']}%' ORDER BY `{$table_prefix}sms_subscribes`.`ID` DESC  LIMIT {$start}, {$end}");
+					$get_result = $wpdb->get_results($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `name` LIKE %s OR `mobile` LIKE %s ORDER BY `{$table_prefix}sms_subscribes`.`ID` DESC  LIMIT {$start}, {$end}", "%{$_POST['s']}%", "%{$_POST['s']}%"));
 				}
 				
 				if(count($get_result ) > 0)
@@ -118,7 +120,7 @@ jQuery(document).ready( function($) {
 					<td class="column-name"><?php echo $gets->mobile; ?></td>
 					<td class="column-name">
 						<?php
-							$result = $wpdb->get_row("SELECT * FROM {$table_prefix}sms_subscribes_group WHERE `ID` = '{$gets->group_ID}'");
+							$result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table_prefix}sms_subscribes_group WHERE `ID` = %s", $gets->group_ID));
 							
 							echo "<a href='admin.php?page=jaiminho-sms/subscribe&group={$result->ID}'>{$result->name}</a>";
 						?>
@@ -239,9 +241,9 @@ jQuery(document).ready( function($) {
 	<?php endif; ?>
 	<?php } else { ?>
 	<?php
-		$get_result = $wpdb->get_results(
-				"SELECT * FROM {$table_prefix}sms_subscribes WHERE ID = '"
-				.$_GET['ID']."'");
+		$get_result = $wpdb->get_results($wpdb->prepare(
+					"SELECT * FROM {$table_prefix}sms_subscribes WHERE ID = %d",
+					$_GET['ID']));
 	  $extra_fields = $wpdb->get_results($wpdb->prepare(
 					"SELECT field, value FROM {$table_prefix}sms_values "
 					. 'WHERE subscriber = %d', $_GET['ID']), 'OBJECT_K');
