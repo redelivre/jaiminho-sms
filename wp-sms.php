@@ -574,11 +574,17 @@ License: GPL2
 			}
 
 			if(isset($_POST['wps_import']) && !$_FILES['wps-import-file']['error']) {
+				$finfo = finfo_open(FILEINFO_MIME);
+				$mime = explode(';',
+						finfo_file($finfo, $_FILES['wps-import-file']['tmp_name']), 2);
+				$mime[1] = explode('=', $mime[1], 2)[1];
+				finfo_close($finfo);
+
 				$tmpid = uniqid($more_entropy=true);
 				$filename = sys_get_temp_dir() . '/wp-sms-i-' . $tmpid;
 				$output = fopen($filename, 'w');
 
-				if ($_FILES['wps-import-file']['type'] === 'application/save') {
+				if ($mime[0] === 'application/vnd.ms-excel') {
 					$sheet = new
 						Spreadsheet_Excel_Reader($_FILES['wps-import-file']['tmp_name']);
 					foreach ($sheet->sheets[0]['cells'] as $row) {
@@ -587,7 +593,7 @@ License: GPL2
 
 					$matching = true;
 				}
-				else if ($_FILES['wps-import-file']['type'] === 'text/csv') {
+				else if ($mime[1] !== 'binary') {
 					$f = fopen($_FILES['wps-import-file']['tmp_name'], "r");
 					while (($row = fgetcsv($f, $escape='"')) !== false) {
 						fputcsv($output, $row);
