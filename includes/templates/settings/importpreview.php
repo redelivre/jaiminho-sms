@@ -10,9 +10,9 @@
 					for ($i = 0; $i < $cols; $i++) {
 						echo '<td>';
 						echo "<select name=\"wps_field[$i]\">";
-						echo '<option value="-1">' . __('None', 'wp-sms') . '</option>';
-						echo '<option value="0">' . __('Name', 'wp-sms') . '</option>';
-						echo '<option value="1">' . __('Mobile', 'wp-sms') . '</option>';
+						foreach ($fields as $k => $v) {
+							echo "<option value=\"$k\">$v</option>";
+						}
 						echo "</select>";
 						echo '</td>';
 					}

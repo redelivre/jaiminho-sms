@@ -546,20 +546,36 @@ License: GPL2
 					$file = fopen($filename, 'r');
 					if ($file !== false) {
 						$fields = $_POST['wps_field'];
-						$associations = array(0, 0);
-						$count = $associations;
+						$count = array();
+						$associations = array();
 						foreach ($fields as $k => $v) {
-							if (array_key_exists($v, $count) && is_numeric($k)) {
+							if (is_numeric($k)) {
 								$count[$v]++;
 								$associations[$v] = $k;
 							}
 						}
 
-						if ($count[0] != 1 || $count[1] != 1) {
+						// -3 is None
+						unset($count[-3]);
+						$matching_ok = true;
+						if (array_key_exists(-1, $count) && array_key_exists(-2, $count)) {
+							foreach ($count as $c) {
+								if ($c != 1) {
+									$matching_ok = false;
+									break;
+								}
+							}
+						}
+						else {
+							$matching_ok = false;
+						}
+						if (!$matching_ok) {
 							$matching = true;
 
 							echo "<div class='error'><p>"
-								. __('Each field must be matched exactly once', 'wp-sms') . "</div></p>";
+								. __('Each field should be matched exactly once. '
+										. 'Name and mobile are required.', 'wp-sms')
+								. "</div></p>";
 						}
 						else {
 							$importing = true;
@@ -611,6 +627,16 @@ License: GPL2
 			}
 
 			if ($matching) {
+				$query = 'SELECT * FROM ' . $wpdb->prefix . 'sms_fields';
+				$results = $wpdb->get_results($query, 'ARRAY_A');
+				$fields = array();
+				foreach ($results as $r) {
+					$fields[$r['ID']] = $r['name'];
+				}
+				$fields[-3] = __('None', 'wp-sms');
+				$fields[-2] = __('Name', 'wp-sms');
+				$fields[-1] = __('Mobile', 'wp-sms');
+				ksort($fields);
 				$data = array();
 				$total = 0;
 				$cols = 0;
@@ -636,6 +662,8 @@ License: GPL2
 				if ($importing) {
 					$get_mobile = $wpdb->get_col($wpdb->prepare(
 								"SELECT `mobile` FROM {$table_prefix}sms_subscribes", false));
+					$valid_fields = $wpdb->get_col(
+							"SELECT ID FROM {$table_prefix}sms_fields");
 					$data = array();
 
 					$f = fopen($filename, "r");
@@ -647,14 +675,14 @@ License: GPL2
 					$duplicate = 0;
 					$invalid = 0;
 					foreach($data as $row) {
-						if (!array_key_exists($associations[0], $row)
-								|| !array_key_exists($associations[1], $row)) {
+						if (!array_key_exists($associations[-2], $row)
+								|| !array_key_exists($associations[-1], $row)) {
 							$invalid++;
 							continue;
 						}
 
-						$name = $row[$associations[0]];
-						$mobile = $row[$associations[1]];
+						$name = $row[$associations[-2]];
+						$mobile = trim($row[$associations[-1]]);
 
 						if (!is_numeric($mobile)) {
 							$invalid++;
@@ -668,7 +696,7 @@ License: GPL2
 						}
 						$get_mobile[] = $mobile;
 						
-						$result = $wpdb->insert("{$table_prefix}sms_subscribes",
+						$wpdb->insert("{$table_prefix}sms_subscribes",
 							array(
 								'date' => date('Y-m-d H:i:s' ,current_time('timestamp', 0)),
 								'name' => $name,
@@ -677,7 +705,18 @@ License: GPL2
 								'group_ID' => $_POST['wpsms_group_name']
 							)
 						);
+						$subscriber_id = $wpdb->insert_id;
 						
+						foreach ($valid_fields as $f) {
+							if (array_key_exists($f, $associations)
+									&& array_key_exists($associations[$f], $row)) {
+								$wpdb->insert("{$table_prefix}sms_values",
+										array(
+											'subscriber' => $subscriber_id,
+											'field' => $f,
+											'value' => $row[$associations[$f]]));
+							}
+						}
 					}
 
 					if($invalid + $duplicate < sizeof($data)) {
