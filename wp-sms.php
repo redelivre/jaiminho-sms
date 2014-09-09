@@ -593,7 +593,8 @@ License: GPL2
 				$finfo = finfo_open(FILEINFO_MIME);
 				$mime = explode(';',
 						finfo_file($finfo, $_FILES['wps-import-file']['tmp_name']), 2);
-				$mime[1] = explode('=', $mime[1], 2)[1];
+				$m = explode('=', $mime[1], 2);
+				$mime[1] = $m[1];
 				finfo_close($finfo);
 
 				$tmpid = uniqid($more_entropy=true);
