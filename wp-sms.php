@@ -600,28 +600,37 @@ License: GPL2
 				$tmpid = uniqid($more_entropy=true);
 				$filename = sys_get_temp_dir() . '/wp-sms-i-' . $tmpid;
 				$output = fopen($filename, 'w');
+				$rows = array();
 
 				if ($mime[0] === 'application/vnd.ms-excel') {
 					$sheet = new
 						Spreadsheet_Excel_Reader($_FILES['wps-import-file']['tmp_name']);
-					foreach ($sheet->sheets[0]['cells'] as $row) {
-						fputcsv($output, $row);
-					}
-
-					$matching = true;
+					$rows = $sheet->sheets[0]['cells'];
 				}
 				else if ($mime[1] !== 'binary') {
 					$f = fopen($_FILES['wps-import-file']['tmp_name'], "r");
 					while (($row = fgetcsv($f, $escape='"')) !== false) {
-						fputcsv($output, $row);
+						$rows[] = $row;
 					}
 					fclose($f);
-
-					$matching = true;
 				}
 				else {
 					echo "<div class='error'><p>"
 						. __('Invalid file type', 'wp-sms') . "</div></p>";
+				}
+
+				if (!empty($rows)) {
+					if (sizeof($rows) <= 1024) {
+						foreach ($rows as $row) {
+							fputcsv($output, $row);
+						}
+						$matching = true;
+					}
+					else {
+						echo "<div class='error'><p>"
+							. __('You can only import 1024 subscribers at a time', 'wp-sms')
+							. "</div></p>";
+					}
 				}
 
 				fclose($output);
