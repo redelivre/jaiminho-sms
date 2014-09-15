@@ -31,6 +31,16 @@
 				}
 			?>
 		</table>
+		<label for="wpsms_group_name"><?php _e('Group', 'wp-sms'); ?>:</label>
+		<select name="wpsms_group_name" id="wpsms_group_name">
+			<?php foreach($get_group_result as $items): ?>
+				<option value="<?php echo $items->ID; ?>"
+					<?php selected($_POST['wpsms_group_name'], $items->ID); ?>><?php
+					echo $items->name;
+				?></option>
+			<?php endforeach; ?>
+		</select>
+		<br>
 		<input type="hidden" name="wps_tmpid" value="<?php echo $tmpid; ?>">
 		<input type="submit" name="wps_import2"
 			value="<?php _e('Import', 'wp-sms'); ?>">
