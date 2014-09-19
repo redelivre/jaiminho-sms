@@ -9,6 +9,14 @@ class clickatell extends WP_SMS {
 		const SMS_SEND_EMAIL = 'sms@messaging.clickatell.com';
 		const BATCH_SIZE = 50000;
 
+		public function __construct() {
+			parent::__construct();
+
+			$this->custom_fields = array(
+					__('HTTP API ID', 'wp-sms'),
+					__('SMTP API ID', 'wp-sms'));
+		}
+
 		public function SendSMS() {
 			$text = str_replace('\r', '', $this->msg);
 			$encoding = mb_detect_encoding($text);
