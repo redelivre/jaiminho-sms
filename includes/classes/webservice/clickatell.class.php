@@ -14,7 +14,8 @@ class clickatell extends WP_SMS {
 
 			$this->custom_fields = array(
 					__('HTTP API ID', 'wp-sms'),
-					__('SMTP API ID', 'wp-sms'));
+					__('SMTP API ID', 'wp-sms'),
+					__('Reply Email', 'wp-sms'));
 		}
 
 		public function SendSMS() {
@@ -27,12 +28,13 @@ class clickatell extends WP_SMS {
 
 			$http_id = $this->custom_values[0];
 			$smtp_id = $this->custom_values[1];
+			$reply = $this->custom_values[2];
 
 			$message = "user:{$this->username}\r\n";
 			$message .= "api_id:{$smtp_id}\r\n";
 			$message .= "password:{$this->password}\r\n";
-			if (filter_var($this->from, FILTER_VALIDATE_EMAIL)) {
-				$message .= "reply:{$this->from}\r\n";
+			if (filter_var($reply, FILTER_VALIDATE_EMAIL)) {
+				$message .= "reply:{$reply}\r\n";
 			}
 
 			if ($encoding === 'ASCII') {
