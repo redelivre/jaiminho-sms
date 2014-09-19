@@ -1,4 +1,4 @@
-
+<?php global $sms; ?>
 <style>
 	p.register{
 		float: <?php echo is_rtl() == true? "right":"left"; ?> 
@@ -71,10 +71,28 @@
 				</td>
 			</tr>
 
+			<?php
+			  $n = 0;
+				foreach ($sms->GetCustomFields() as $field) { ?>
+					<tr>
+						<th><?php echo htmlentities($field); ?>:</th>
+						<td>
+							<input type="text" dir="ltr" style="width: 200px;"
+								name="wp_custom_value_<?php echo $n; ?>"
+								value="<?php
+									echo htmlentities(get_option("wp_custom_value_$n"));
+								?>"/>
+						</td>
+					</tr>
+					<?php
+					$n++;
+				}
+			?>
+
 			<tr>
 				<th><?php _e('Credit', 'wp-sms'); ?>:</th>
 				<td>
-				<?php global $sms; echo $sms->GetCredit() . " " . $sms->unit; ?>
+				<?php echo $sms->GetCredit() . " " . $sms->unit; ?>
 				</td>
 			</tr>
 
@@ -94,7 +112,12 @@
 				<td>
 					<p class="submit">
 						<input type="hidden" name="action" value="update" />
-						<input type="hidden" name="page_options" value="wp_webservice,wp_username,wp_password,wp_number" />
+						<input type="hidden" name="page_options"
+						value="wp_webservice,wp_username,wp_password,wp_number<?php
+						  for ($i = 0; $i < sizeof($sms->GetCustomFields()); $i++) {
+								echo ",wp_custom_value_$i";
+							}
+						?>" />
 						<input type="submit" class="button-primary" name="Submit" value="<?php _e('Update', 'wp-sms'); ?>" />
 					</p>
 				</td>

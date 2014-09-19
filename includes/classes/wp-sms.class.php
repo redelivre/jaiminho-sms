@@ -57,6 +57,20 @@ abstract class WP_SMS {
 	 * @var string
 	 */
 	protected $tb_prefix;
+
+	/**
+		* Custom fields
+		*
+		* @var array of strings
+	*/
+	protected $custom_fields;
+
+	/**
+		* Custom values
+		*
+		* @var array of strings
+	*/
+	public $custom_values;
 	
 	/**
 	 * Constructors
@@ -86,5 +100,9 @@ abstract class WP_SMS {
 			)
 		);
 
+	}
+
+	public function GetCustomFields() {
+		return $this->custom_fields;
 	}
 }
