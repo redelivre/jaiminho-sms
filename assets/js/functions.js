@@ -46,24 +46,29 @@ function checkSMSLength(textarea, counterSpan, partSpan, maxSpan, def) {
 
 
     var text = document.getElementById(textarea).value;
-    var ucs2 = text.search(/[^\x00-\x7E]/) != -1
-    if (!ucs2) text = text.replace(/([[\]{}~^|\\])/g, "\\$1");
-    var unitLength = ucs2 ? 70 : 160;
-    var msgLen = 0;
-    msgLen = document.getElementById(textarea).value.length; //+docu def;
+    var ucs2 = text.search(/[^\x00-\x7E]/) != -1;
+    var unitLength = 160;
+    var msgLen = text.length;
+    var count = 1;
 
-    if (msgLen > unitLength) {
-        if (ucs2) unitLength = unitLength - 3;
-        else unitLength = unitLength - 7;
+    if (!ucs2) {
+      text = text.replace(/([[\]{}~^|\\])/g, "\\$1");
     }
+    else {
+      unitLength = 70;
 
-    var count = Math.max(Math.ceil(msgLen / unitLength), 1);
+      if (msgLen > unitLength) {
+        document.getElementById(textarea).value =
+          text.substring(0, text.length-1);
+        unitLength = 160;
+      }
+    }
 
     document.getElementById(maxSpan).innerHTML = unitLength;
     document.getElementById(counterSpan).innerHTML = (unitLength * count - msgLen);
     document.getElementById(partSpan).innerHTML = count;
 
-
+    document.getElementById(textarea).maxLength = unitLength;
 }
 
 // تشخیص یونیکد بودن متن
