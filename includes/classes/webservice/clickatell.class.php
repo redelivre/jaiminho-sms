@@ -25,8 +25,11 @@ class clickatell extends WP_SMS {
 				return 0;
 			}
 
+			$http_id = $this->custom_values[0];
+			$smtp_id = $this->custom_values[1];
+
 			$message = "user:{$this->username}\r\n";
-			$message = "api_id:{$this->from}\r\n";
+			$message = "api_id:{$smtp_id}\r\n";
 			$message .= "password:{$this->password}\r\n";
 
 			if ($encoding === 'ASCII') {
@@ -69,11 +72,12 @@ class clickatell extends WP_SMS {
 		}
 
 		public function GetCredit() {
+			$http_id = $this->custom_values[0];
+
 			$result = file_get_contents("{$this->tariff}?user={$this->username}"
-					. "&password={$this->password}&api_id={$this->from}");
+					. "&password={$this->password}&api_id={$http_id}");
 
 			return (float) str_replace('Credit: ', '', $result);
-
 		}
 	}
 ?>
