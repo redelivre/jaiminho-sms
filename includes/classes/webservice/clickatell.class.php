@@ -29,8 +29,11 @@ class clickatell extends WP_SMS {
 			$smtp_id = $this->custom_values[1];
 
 			$message = "user:{$this->username}\r\n";
-			$message = "api_id:{$smtp_id}\r\n";
+			$message .= "api_id:{$smtp_id}\r\n";
 			$message .= "password:{$this->password}\r\n";
+			if (filter_var($this->from, FILTER_VALIDATE_EMAIL)) {
+				$message .= "reply:{$this->from}\r\n";
+			}
 
 			if ($encoding === 'ASCII') {
 				if (strlen($text) > 160) {
@@ -47,8 +50,8 @@ class clickatell extends WP_SMS {
 				$text = iconv($encoding, 'UCS-2', $text);
 				$hex = '';
 				$len = strlen($text);
-				for ($i = 0; $i < $len; $i++) {
-					$hex .= dechex(ord($text[$i]));
+				for ($i = 0; $i < $len; $i += 2) {
+					$hex .= sprintf('%02x%02x', ord($text[$i+1]), ord($text[$i]));
 				}
 				$message .= "unicode:1\r\n";
 				$message .= "data:$hex\r\n";
