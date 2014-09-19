@@ -111,7 +111,7 @@ License: GPL2
 		$sms->password = get_option('wp_password');
 		$sms->from = get_option('wp_number');
 		$sms->custom_values = array();
-		for ($i = 0; $i < sizeof($sms->GetCustomFields); $i++) {
+		for ($i = 0; $i < sizeof($sms->GetCustomFields()); $i++) {
 			$sms->custom_values[$i] = get_option("wp_custom_value_$i");
 		}
 
