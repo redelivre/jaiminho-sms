@@ -6,45 +6,58 @@
 class clickatell extends WP_SMS {
 		private $wsdl_link = "http://api.clickatell.com/http/sendmsg";
 		public $tariff = "http://api.clickatell.com/http/getbalance";
+		const SMS_SEND_EMAIL = 'sms@messaging.clickatell.com';
+		const BATCH_SIZE = 50000;
 
 		public function SendSMS() {
+			$text = str_replace('\r', '', $this->msg);
+			$encoding = mb_detect_encoding($text);
 
-			$to = implode($this->to, ",");
-
-			$sms_text = iconv('cp1251', 'utf-8', $this->msg);
-
-			$POST = array (
-				'user'	  => $this->username,
-				'password'  => $this->password,
-				'to'		=> $to,
-				'api_id'	=> $this->from,
-				'text'		=> $sms_text
-			);
-
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($ch, CURLOPT_POST, 1);
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $POST);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-			curl_setopt($ch, CURLOPT_URL, "{$this->wsdl_link}");
-			$result = curl_exec($ch);
-
-			if ($result) {
-				$sent = sizeof($this->to) - substr_count($result, 'ERR');
-
-				if ($sent) {
-					echo "SMS message sent. $result";
-
-					$this->InsertToDB($this->from, $this->msg, $this->to);
-					$this->Hook('wp_sms_send', $result);
-				}
-
-				return $sent;
-			} else {
-				echo "API access error";
+			if ($encoding === false) {
+				return 0;
 			}
 
-			return 0;
+			$message = "user:{$this->username}\r\n";
+			$message = "api_id:{$this->from}\r\n";
+			$message .= "password:{$this->password}\r\n";
+
+			if ($encoding === 'ASCII') {
+				if (strlen($text) > 160) {
+					return 0;
+				}
+				$text = urlencode($text);
+				$message .= "urltext:$text\r\n";
+			}
+			else {
+				if (mb_strlen($text, $encoding) > 70) {
+					return 0;
+				}
+
+				$text = iconv($encoding, 'UCS-2', $text);
+				$hex = '';
+				$len = strlen($text);
+				for ($i = 0; $i < $len; $i++) {
+					$hex .= dechex(ord($text[$i]));
+				}
+				$message .= "unicode:1\r\n";
+				$message .= "data:$hex\r\n";
+			}
+
+			$sent = 0;
+			foreach (array_chunk($this->to, self::BATCH_SIZE) as $to) {
+				$recipients = '';
+				foreach ($to as $t) {
+					$recipients .=  "to:$t\r\n";
+				}
+
+				if (mail(self::SMS_SEND_EMAIL, '', $message . $recipients)) {
+					$this->InsertToDB($this->from, $this->msg, $this->to);
+					$this->Hook('wp_sms_send', true);
+					$sent += sizeof($to);
+				}
+			}
+
+			return $sent;
 		}
 
 		public function GetCredit() {

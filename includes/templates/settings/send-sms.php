@@ -87,9 +87,19 @@
 								else {
 									$sent = $sms->SendSMS();
 
-									echo "<div class='updated'><p>" . sprintf(__('%d messages were sent with success. %d failed.', 'wp-sms'), $sent, sizeof($sms->to) - $sent) . "</p></div>";
-									update_option('wp_last_credit', $sms->GetCredit());
-									update_option('wpsms_quota', -$sent * $cost);
+									if ($sent) {
+										echo "<div class='updated'><p>"
+											. sprintf(__('%d messages requested. %d failed',
+														'wp-sms'), $sent, sizeof($sms->to) - $sent)
+											. "</p></div>";
+										update_option('wp_last_credit', $sms->GetCredit());
+										update_option('wpsms_quota', -$sent * $cost);
+									}
+									else {
+										echo "<div class='error'><p>"
+											. __('Failed to request messages', 'wp-sms')
+											. "</p></div>";
+									}
 								}
 							} else {
 								echo "<div class='error'><p>" . __('Please enter a message', 'wp-sms') . "</p></div>";
