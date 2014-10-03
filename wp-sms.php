@@ -304,14 +304,14 @@ License: GPL2
 		global $wpdb, $table_prefix, $date;
 		
 		if($_GET['group']) {
-			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `group_ID` = '%s'", $_GET['group']));
+			$total = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `{$table_prefix}sms_subscribes` WHERE `group_ID` = '%s'", $_GET['group']));
 		} else {
-			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes`", false));
+			$total = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `{$table_prefix}sms_subscribes`", false));
 		}
 		
 		if($_POST['search']) {
 			$search_query = "%" . $_POST['s'] . "%";
-			$total = $wpdb->query($wpdb->prepare("SELECT * FROM `{$table_prefix}sms_subscribes` WHERE `name` LIKE '%s' OR `mobile` LIKE '%s'", $search_query, $search_query));
+			$total = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM `{$table_prefix}sms_subscribes` WHERE `name` LIKE '%s' OR `mobile` LIKE '%s'", $search_query, $search_query));
 		}
 		
 		$get_group_result = $wpdb->get_results("SELECT * FROM `{$table_prefix}sms_subscribes_group`");
