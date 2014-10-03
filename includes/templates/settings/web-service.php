@@ -107,15 +107,17 @@
 				</td>
 			</tr>
 			<?php } ?>
-			
+
 			<tr>
 				<td>
 					<p class="submit">
 						<input type="hidden" name="action" value="update" />
 						<input type="hidden" name="page_options"
 						value="wp_webservice,wp_username,wp_password,wp_number<?php
-						  for ($i = 0; $i < sizeof($sms->GetCustomFields()); $i++) {
-								echo ",wp_custom_value_$i";
+							if ($sms) {
+								for ($i = 0; $i < sizeof($sms->GetCustomFields()); $i++) {
+									echo ",wp_custom_value_$i";
+								}
 							}
 						?>" />
 						<input type="submit" class="button-primary" name="Submit" value="<?php _e('Update', 'wp-sms'); ?>" />
@@ -123,5 +125,5 @@
 				</td>
 			</tr>
 		</table>
-	</form>	
+	</form>
 </div>
