@@ -130,7 +130,7 @@
 						<select name="wpsms_group_name" id="wpsms_group_name">
 							<option value="all">
 							<?php
-								$username_active = $wpdb->query("SELECT * FROM {$table_prefix}sms_subscribes WHERE status = '1'");
+								$username_active = $wpdb->get_var("SELECT COUNT(*) FROM {$table_prefix}sms_subscribes WHERE status = '1'");
 								echo sprintf(__('All (%s subscribers active)', 'wp-sms'), $username_active);
 							?>
 							</option>
