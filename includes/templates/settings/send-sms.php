@@ -44,6 +44,8 @@
 	<h2><?php _e('Send SMS', 'wp-sms'); ?></h2>
 	<?php
 	global $sms, $wpdb, $table_prefix, $date;
+	ini_set("memory_limit", "2048M");
+	set_time_limit(0);
 	if(get_option('wp_webservice')) {
 		update_option('wp_last_credit', $sms->GetCredit());
 		if($sms->GetCredit()) {
