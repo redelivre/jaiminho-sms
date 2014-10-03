@@ -60,11 +60,11 @@ jQuery(document).ready( function($) {
 					$line = null;
 				}
 				
-				$result = $wpdb->get_col($wpdb->prepare(
-							"SELECT * FROM {$table_prefix}sms_subscribes "
+				$result = $wpdb->get_var($wpdb->prepare(
+							"SELECT COUNT(*) FROM {$table_prefix}sms_subscribes "
 							. "WHERE group_ID = %s", $groups->ID));
 				
-				$count = count($result);
+				$count = $result;
 				
 				echo "<li><a {$current} href='admin.php?page=jaiminho-sms/subscribe&group={$groups->ID}'>{$groups->name} <span class='count'>({$count})</span></a>{$line}</li>";
 			}
